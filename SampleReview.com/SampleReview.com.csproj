@@ -67,6 +67,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="build-scripts\Build.bat" />
+    <Content Include="ux\catalog\catalog.scss" />
+    <Content Include="ux\loading-spinner.scss" />
+    <Content Include="ux\review\review.scss" />
+    <Content Include="ux\review.style.scss" />
+    <Content Include="package.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -75,6 +81,30 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.review.module.js" />
+    <Content Include="app\services\constraints\index.js" />
+    <Content Include="app\services\constraints\constraints.constant.js" />
+    <Content Include="app\services\index.js" />
+    <Content Include="app\services\rest\index.js" />
+    <Content Include="app\services\rest\item.resource.js" />
+    <Content Include="app\services\rest\review.resource.js" />
+    <Content Include="build-scripts\Gruntfile.js" />
+    <Content Include="build-scripts\webpack.config.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="tests\app\app.smithReview.module.spec.js" />
+    <Content Include="tests\app\services\rest\review.resource.spec.js" />
+    <Content Include="tests\karma.conf.js" />
+    <Content Include="tests\ui.smithReview.mock.module.js" />
+    <Content Include="ux\catalog\catalog.template.html" />
+    <Content Include="ux\catalog\catalog.view.js" />
+    <Content Include="ux\catalog\index.js" />
+    <Content Include="ux\order-ui\index.js" />
+    <Content Include="ux\order-ui\order-ui.component.js" />
+    <Content Include="ux\order-ui\order-ui.template.html" />
+    <Content Include="ux\review\index.js" />
+    <Content Include="ux\review\review.template.html" />
+    <Content Include="ux\review\review.view.js" />
+    <Content Include="ux\ui.review.module.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

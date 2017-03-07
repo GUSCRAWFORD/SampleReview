@@ -1,0 +1,51 @@
+﻿<!--
+{   
+    "Id":1,
+    "Name":"GitHub",
+    "Icon":null,
+    "AverageRating":5,
+    "SampleSize":1,
+    "Highest":5,
+    "Lowest":5
+}
+-->
+<div class="row marketing">
+    <div ng-if="$ctrl.busy" class="col-lg-12">
+        <span class="fa fa-lg fa-spinner loading-spinner" aria-hidden="true"></span> Loading...
+    </div>
+    <div class="col-lg-12 organizer">
+        <div class="inline-block">
+            <ul uib-pagination items-per-page="$ctrl.orderItems.perPage"
+                ng-change="$ctrl.refresh()"
+                ng-hide="$ctrl.busy"
+                total-items="$ctrl.orderItems.totalItems"
+                ng-model="$ctrl.orderItems.page" max-size="10" class="pagination" boundary-links="true" rotate="false"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul></div>
+        <div class="inline-block pull-right">
+            <order-ui id="Items" order="$ctrl.orderItems"
+                      update="$ctrl.refresh()"
+                      disabled="$ctrl.busy"></order-ui>
+        </div>
+    </div>
+    <div ng-if="!$ctrl.busy"
+         ng-repeat="item in $ctrl.items"
+         class="col-lg-6">
+
+        <div class="inline-block item-icon">
+            <span class="fa fa-{{item.Icon}}" aria-hidden="true"></span>
+        </div>
+
+        <div class="inline-block">
+            <h4><a href="/#!/review/{{item.Id}}">{{ item.Name }}</a></h4>
+            <p>
+                <div uib-rating ng-model="item.AverageRating"
+                        max="$ctrl.constraints.maxRating"
+                        readonly="true"
+                        aria-labelledby="default-rating"></div>
+                <div ng-if="item.Date" class="text-muted">{{ item.Date | date: "MMMM d, yyyy" }}, {{item.ReviewCount}} Review{{item.ReviewCount > 1?'s':''}}</div>
+                <div ng-if="!item.Date" class="text-muted">No Reviews</div>
+            </p>
+        </div>
+    </div>
+    
+</div>

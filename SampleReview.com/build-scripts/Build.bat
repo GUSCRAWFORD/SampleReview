@@ -1,0 +1,1 @@
+grunt --b ../ build
