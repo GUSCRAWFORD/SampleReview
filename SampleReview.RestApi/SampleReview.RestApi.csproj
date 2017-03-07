@@ -117,6 +117,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ReviewSchema.mdf" />
+    <Content Include="App_Data\ReviewSchema_log.ldf">
+      <DependentUpon>ReviewSchema.mdf</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
@@ -142,7 +146,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>

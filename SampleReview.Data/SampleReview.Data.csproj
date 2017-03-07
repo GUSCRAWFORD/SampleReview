@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,13 +51,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\DominModelExtensions.cs" />
+    <Compile Include="Context\IDbContext.cs" />
+    <Compile Include="Context\LinqExtensions.cs" />
+    <Compile Include="Domain\Item\AnalyzedItem.cs" />
+    <Compile Include="Domain\AnyDomainModel.cs" />
+    <Compile Include="Domain\Item\AnyItem.cs" />
+    <Compile Include="Domain\Item\Item.cs" />
+    <Compile Include="Domain\Review\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repo\Repo.cs" />
+    <Compile Include="Repo\IRepo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Domain\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
