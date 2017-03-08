@@ -13,29 +13,38 @@ namespace SampleReview.Data.Repo {
             where TContext : IDbContext {
 
         GenRepo<TContext, TDomain> Include(params string[] includedProperties);
+
         GenRepo<TContext, TDomain> AsNoTracking();
 
-        IEnumerable<TDomain> Query(
-                Expression<Func<TDomain, bool>> predicate = null,
+        GenRepo<TContext, TDomain> Query(
                 int page = 0,
                 int perPage = 0,
-                Func<QueryDetails, object> getQueryResult = null,
                 params string[] orderBy);
 
-        void Upsert(TDomain item);
+        GenRepo<TContext, TDomain> Query(
+                Expression<Func<TDomain, bool>> predicate,
+                int page = 0,
+                int perPage = 0,
+                params string[] orderBy);
+
+        GenRepo<TContext, TDomain> Query<TResult>(
+                Expression<Func<TDomain, TResult>> select,
+                Expression<Func<TDomain, bool>> predicate,
+                int page = 0,
+                int perPage = 0,
+                params string[] orderBy);
 
         TDomain Find(params object[] keyValues);
 
-        IEnumerable<TResult> Query<TResult>(
-                Expression<Func<TDomain, TResult>> select,
-                Expression<Func<TDomain, bool>> predicate = null,
-                int page = 0,
-                int perPage = 0,
-                Func<QueryDetails, object> getQueryDetails = null,
-                params string[] orderBy);
+        void Upsert(TDomain item);
+
+        QueryDetails Details { get; }
+
+        IEnumerable<TResult> Result<TResult>();
+        IEnumerable<TDomain> Result();
     }
     public class QueryDetails {
         public int RecordsReturned { get; set; }
-        public int OfTotalRecords { get; set; }
+        public int TotalRecords { get; set; }
     }
 }

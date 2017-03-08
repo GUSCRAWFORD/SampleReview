@@ -40,7 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Feature.cs" />
+    <Compile Include="Features\ItemCatalog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SampleReview.Business\SampleReview.Business.csproj">
+      <Project>{2749fa0f-1a63-4240-84c0-d69cd6bd4c27}</Project>
+      <Name>SampleReview.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleReview.Data\SampleReview.Data.csproj">
+      <Project>{85ada1ae-51dc-4789-964e-745decef4689}</Project>
+      <Name>SampleReview.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

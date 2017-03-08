@@ -128,6 +128,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\AnyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,8 +148,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SampleReview.Common\SampleReview.Common.csproj">
+      <Project>{1ee8b34d-55d3-4bed-924b-a474a7c05a41}</Project>
+      <Name>SampleReview.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleReview.Data\SampleReview.Data.csproj">
+      <Project>{85ada1ae-51dc-4789-964e-745decef4689}</Project>
+      <Name>SampleReview.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
