@@ -1,5 +1,5 @@
 ﻿var angular = require('angular');
-angular.module('ui.smithReview')
+angular.module('ui.review')
 	.component('catalog', {
 		template: require('./catalog.template.html'),
 		controller: catalogController
@@ -18,14 +18,14 @@ function catalogController(itemResource, constraints) {
 	ctrl.$onInit = onInit;
 	ctrl.constraints = constraints;
 	ctrl.refresh = refresh;
-	ctrl.defaultOrderBy = ['-Popularity', '-AverageRating', '-Date', '+Name'];
+	ctrl.defaultOrderBy = ['-popularity', '-averageRating', '-date', '+name'];
 
 	ctrl.orderItems = {
 		options: {
-			Popularity: { label:'Popular', prefix:{asc:'Least',desc:'Most'}, type: 'amount', defaultAsc:'-' },
-			AverageRating: { label: 'Average Rating', prefix: { asc: 'Lowest', desc: 'Highest' }, type: 'amount', defaultAsc: '-' },
-			Date: { label: 'Reviewed', prefix: { asc: 'Oldest', desc: 'Most Recent' }, type: 'amount', defaultAsc: '-' },
-			Name: { label: 'Name', prefix: { asc: '(Ascending)', desc: '(Descending)' }, type: 'alpha', defaultAsc: '+' }
+			popularity: { label:'Popular', prefix:{asc:'Least',desc:'Most'}, type: 'amount', defaultAsc:'-' },
+			averageRating: { label: 'Average Rating', prefix: { asc: 'Lowest', desc: 'Highest' }, type: 'amount', defaultAsc: '-' },
+			date: { label: 'Reviewed', prefix: { asc: 'Oldest', desc: 'Most Recent' }, type: 'amount', defaultAsc: '-' },
+			name: { label: 'Name', prefix: { asc: '(Ascending)', desc: '(Descending)' }, type: 'alpha', defaultAsc: '+' }
 		},
 		by: ctrl.defaultOrderBy,
 		page: constraints.defaultPage,
@@ -37,14 +37,15 @@ function catalogController(itemResource, constraints) {
 	}
 
 	function refresh() {
+		ctrl.failed = false;
 		itemResource.get({
 			page: ctrl.orderItems.page,
 			perPage: ctrl.orderItems.perPage,
-			orderBy: ctrl.orderItems.by
+			orderBy: ctrl.orderItems.by.join(',')
 		}).$promise.then(function (itemsPage) {
-			ctrl.items = itemsPage.Collection;
+			ctrl.items = itemsPage.collection;
 			ctrl.busy = false;
-			ctrl.orderItems.totalItems = itemsPage.OfTotal;
-		});
+			ctrl.orderItems.totalItems = itemsPage.totalItems;
+		}, function () { ctrl.busy = !(ctrl.failed = true); });
 	}
 }

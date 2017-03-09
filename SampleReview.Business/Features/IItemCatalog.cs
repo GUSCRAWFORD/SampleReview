@@ -5,5 +5,6 @@ namespace SampleReview.Business.Features {
         Page<Item> All(int page, int perPage, string[] orderBy);
         Item ById(int id);
         Item ByName(string name);
+        void Save(Item item);
     }
 }

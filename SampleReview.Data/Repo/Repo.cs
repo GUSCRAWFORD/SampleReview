@@ -65,11 +65,10 @@ namespace SampleReview.Data.Repo {
                 foreach(string column in orderBy){
                     char firstChar = column.First();
                     string columnName = firstChar == '+' || firstChar == '-' ? column.Substring(1) : column;
-                    Expression<Func<TDomain, object>> propertyExpression = (x)=> x.GetType().GetProperty(columnName).GetValue(x);
                     if (orderedQuery != null)
-                        orderedQuery = firstChar == '-' ? orderedQuery.ThenByDescending(columnName) : orderedQuery.ThenBy(columnName);
+                        orderedQuery = firstChar == '-' ? orderedQuery.ThenByDescending(columnName.ToPascal()) : orderedQuery.ThenBy(columnName.ToPascal());
                     else
-                        orderedQuery = firstChar == '-' ?  projectedQuery.OrderByDescending(columnName) : projectedQuery.OrderBy(columnName);
+                        orderedQuery = firstChar == '-' ?  projectedQuery.OrderByDescending(columnName.ToPascal()) : projectedQuery.OrderBy(columnName.ToPascal());
                 }
             }
 
@@ -104,7 +103,7 @@ namespace SampleReview.Data.Repo {
             return this;
         }
         public IEnumerable<TDomain> Result() {
-           return _query.ToList();
+           return ((IEnumerable<TDomain>) _projectedQuery ?? _query).ToList();
         }
         public IEnumerable<TResult> Result<TResult>() {
            return (IEnumerable<TResult>) _projectedQuery.ToList();

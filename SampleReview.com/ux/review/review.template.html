@@ -9,37 +9,33 @@
     "Lowest":5
 }
 -->
-<div class="row marketing">
-    <div ng-if="$ctrl.busy">
-        <span class="fa fa-lg fa-spinner loading-spinner" aria-hidden="true"></span> {{ $ctrl.busyMessage || 'Loading...' }}
-    </div>
+<div class="row marketing rounded-border">
     <div class="col-lg-12 form-horizontal">
         <div class="inline-block item-icon">
-            <span class="fa fa-{{$ctrl.item.Icon}}" aria-hidden="true"></span>
+            <span class="fa fa-{{$ctrl.item.icon}}" style="color:{{$ctrl.item.color}}" aria-hidden="true"></span>
         </div>
 
         <div class="inline-block">
-            <h4>{{ $ctrl.item.Name }}</h4>
+            <h4>{{ $ctrl.item.name }}</h4>
             <p>
                 <div ng-show="$ctrl.editing"
                      name="ratingField"
-                     uib-rating ng-model="$ctrl.editing.Rating"
+                     uib-rating ng-model="$ctrl.editing.rating"
                      max="$ctrl.constraints.maxRating"
                      min="$ctrl.constraints.minRating"
                      aria-labelledby="default-rating"></div>
 
                 <div ng-show="$ctrl.item&&!$ctrl.editing"
-                     uib-rating ng-model="$ctrl.item.AverageRating"
+                     uib-rating ng-model="$ctrl.item.averageRating"
                      max="$ctrl.constraints.maxRating"
                      aria-labelledby="default-rating"
-                     ng-change="$ctrl.edit($ctrl.item.AverageRating)"></div>
-
-                <div class="text-muted">{{ $ctrl.item.Date | date: "MMMM d, yyyy" }}, {{$ctrl.item.ReviewCount}} Review{{$ctrl.item.ReviewCount > 1?'s':''}}</div>
+                     ng-change="$ctrl.edit($ctrl.item.averageRating)"></div>
+                <div class="text-muted">{{ $ctrl.item.date | date: "MMMM d, yyyy" }}, {{$ctrl.item.reviewCount}} Review{{$ctrl.item.reviewCount > 1?'s':''}}</div>
             </p>
         </div>
     </div>
     <div ng-if="$ctrl.editing">
-        <textarea ng-model="$ctrl.editing.Comment"
+        <textarea ng-model="$ctrl.editing.comment"
                   class="form-control"
                   placeholder="Comment"
                   name="commentField"
@@ -66,28 +62,35 @@
                 items-per-page="$ctrl.orderReview.perPage"
                 total-items="$ctrl.orderReview.totalItems"
                 ng-model="$ctrl.orderReview.page"
-                ng-hide="$ctrl.busy"
+                ng-hide="$ctrl.busy || $ctrl.orderReview.totalItems < $ctrl.orderReview.perPage"
                 max-size="10" class="pagination" boundary-links="true" rotate="false"
                 previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
         </div>
+        <div ng-if="$ctrl.busy" class="inline-block">
+            <span class="fa fa-lg fa-spinner loading-spinner" aria-hidden="true"></span> Loading...
+        </div>
+        <div ng-if="$ctrl.failed" class="inline-block">
+            <span class="fa fa-lg fa-ban text-danger" aria-hidden="true"></span> Loading failed <a ng-click="$ctrl.refresh()">try again</a>?
+        </div>
         <div class="inline-block pull-right">
-            <order-ui id="{{$ctrl.item.Id}}"
+            <order-ui id="{{$ctrl.item.id}}"
                       order="$ctrl.orderReview"
                       update="$ctrl.refresh()"
                       disabled="$ctrl.busy"></order-ui>
         </div>
     </div>
-    <hr>
-    <div ng-if="!$ctrl.busy"
-         class="col-lg-6"
-         ng-repeat="review in $ctrl.reviews">
-        <span>{{ review.Comment }}</span>
-        <p>
-            <div uib-rating ng-model="review.Rating"
-                  max="$ctrl.constraints.maxRating"
-                  readonly="true"
-                  aria-labelledby="default-rating"></div>
-            <div class="text-muted">{{ review.Date | date: "MMMM d, yyyy" }}</div>
-        </p>
+    <div class="result-list">
+        <div ng-if="!$ctrl.busy"
+             class="col-lg-6"
+             ng-repeat="review in $ctrl.reviews">
+            <span>{{ review.comment }}</span>
+            <p>
+                <div uib-rating ng-model="review.rating"
+                     max="$ctrl.constraints.maxRating"
+                     readonly="true"
+                     aria-labelledby="default-rating"></div>
+                <div class="text-muted">{{ review.date | date: "MMMM d, yyyy" }}</div>
+            </p>
+        </div>
     </div>
 </div>

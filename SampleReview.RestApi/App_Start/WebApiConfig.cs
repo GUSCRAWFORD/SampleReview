@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Unity;
+using Newtonsoft.Json.Serialization;
 using System.Web.Http;
 
 namespace SampleReview.RestApi
@@ -10,6 +11,8 @@ namespace SampleReview.RestApi
             // Web API configuration and services
             UnityConfig.RegisterComponents();
 
+            config.EnableCors();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -18,6 +21,9 @@ namespace SampleReview.RestApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
         }
     }
 }

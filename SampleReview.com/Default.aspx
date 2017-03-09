@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SmithReviews</title>
+    <title>Sample Review SPA</title>
     
-    <link href="css/smithReview.style.css" rel="stylesheet" type="text/css">
+    <link href="css/review.style.css" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -20,7 +20,7 @@
                 <li role="presentation" class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                 </ul>
             </nav>
-            <h3 class="text-muted"><i class="fa fa-comments-o" aria-hidden="true"></i> Smith Reviews Sample</h3>
+            <h3 class="text-muted"><i class="fa fa-cubes fa-2x" aria-hidden="true"></i> Sample Review Application</h3>
         </div>
         <hr>
         <div ng-view></div>
@@ -29,8 +29,8 @@
             <h1><i class="vso-icon" aria-hidden="true"></i> Gus + TFS</h1>
             <p class="lead">See how Gus uses TFS tasks and storyboarding to manage projects and deliver in a team.</p>
             <p>
-                <a class="btn btn-lg btn-success" href="https://guscrawford.visualstudio.com/SmithReview/" target="_blank" role="button">
-                    <i class="fa fa-sign-in" aria-hidden="true"></i> Join SmithReview <small>guscrawford.visualstudio.com/SmithReview</small></a>
+                <a class="btn btn-lg btn-success" href="https://guscrawford.visualstudio.com/SampleReview/" target="_blank" role="button">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> Join SmithReview <small>guscrawford.visualstudio.com/SampleReview</small></a>
             </p>
             <p>
                 <a class="btn btn-sm btn-primary" href="mailto:crawford.gus@gmail.com?subject=Requesting%20Access%20To%20SmithReview" target="_blank" role="button">
@@ -46,12 +46,12 @@
             </p>
         </div>
         <footer class="footer">
-            <p>&copy; 2017 Gus Crawford for Review by Smith, Inc.</p>
+            <p>&copy; 2017 Gus Crawford</p>
         </footer>
     </div>
-    <script src="js/ui.smithReview.js"></script>
+    <script src="js/ui.review.js"></script>
     <script>
-        angular.module('app.smithReview').constant('restEndpoint',"<asp:Literal runat='server' Text='<%$ appSettings:SmithReviewsApi%>' />");
+        angular.module('app.review').constant('restEndpoint',"<asp:Literal runat='server' Text='<%$ appSettings:ReviewsApi%>' />");
     </script>
 </body>
 </html>

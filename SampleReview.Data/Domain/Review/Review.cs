@@ -6,9 +6,8 @@ namespace SampleReview.Data.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Review
+    public partial class Review : AnyDomainModel
     {
-        public int Id { get; set; }
 
         [Required]
         [StringLength(280)]

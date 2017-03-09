@@ -1,5 +1,5 @@
 ﻿var angular = require('angular');
-angular.module('app.smithReview').constant('smithConstraints', {
+angular.module('app.review').constant('constraints', {
 	defaultPage: 1,
 	defaultPerPage: 10,
 	defaultOrderBy: "Id",

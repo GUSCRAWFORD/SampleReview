@@ -1,44 +1,42 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using SampleReview.Business.Features;
+﻿using SampleReview.Business.Features;
 using SampleReview.Business.Models;
+using SampleReview.Business.Rules;
 using SampleReview.BusinessDriver.Features;
-using SampleReview.Common;
 using SampleReview.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace SampleReview.RestApi.Controllers
 {
+    [EnableCors(origins: "http://localhost:54672", headers: "*", methods: "*")]
     public class ItemsController : AnyController
     {
-        public ItemsController(IFactory<IDbContext> contextFactory, ItemCatalog itemCatalog) : base (contextFactory) {
+        public ItemsController(IDbContextFactory contextFactory, ItemCatalog itemCatalog) : base (contextFactory) {
             this.itemCatalog = itemCatalog;
         }
         protected IItemCatalog itemCatalog;
-        // GET: api/Items
-        public Page<Item> Get(int page=0, int perPage=0, string orderBy="")
+        // GET: api/Items?page=1&perPage=10&orderBy
+        public Page<Item> Get(int page=0, int perPage=0, string orderBy = "")
         {
             return itemCatalog.All(page, perPage, orderBy.Split(','));
         }
 
         // GET: api/Items/5
-        public string Get(int id)
+        public Item Get(int id)
         {
-            return "value";
+            return itemCatalog.ById(id);
         }
 
         // POST: api/Items
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Item value)
         {
+            itemCatalog.Save(value);
         }
 
         // PUT: api/Items/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Item value)
         {
+            Post(value);
         }
 
         // DELETE: api/Items/5

@@ -1,7 +1,7 @@
 ﻿var angular = require('angular');
-angular.module('app.smithReview').service('itemResource', itemResource);
-itemResource.$inject = ['$resource', 'restEndpoint', 'smithConstraints'];
-function itemResource($resource, restEndpoint, smithConstraints) {
+angular.module('app.review').service('itemResource', itemResource);
+itemResource.$inject = ['$resource', 'restEndpoint', 'constraints'];
+function itemResource($resource, restEndpoint, constraints) {
 	return $resource(restEndpoint + 'items', {
 	});
 }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SampleReview.Data.Context {
-    public static class LinqExtensions {
+    public static class Extensions {
         #region OrderBy, ThenBy, Descending
         public static IOrderedQueryable<T> OrderBy<T>(this IQueryable<T> source, string propertyName)
         {
@@ -46,5 +46,9 @@ namespace SampleReview.Data.Context {
                     ));
         }
         #endregion
+
+        public static string ToPascal(this string name) {
+            return name.First().ToString().ToUpper()+name.Substring(1);
+        }
     }
 }

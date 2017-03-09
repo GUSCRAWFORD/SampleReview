@@ -21,8 +21,9 @@ namespace SampleReview.RestApi
             // e.g. container.RegisterType<ITestService, TestService>();
             //  container.LoadConfiguration(); // Move type mappings to transormable config
             ContextFactory dbContextFactory = new ContextFactory();
-            container.RegisterInstance<IFactory<IDbContext>>(dbContextFactory);
+            container.RegisterInstance<IDbContextFactory>(dbContextFactory);
             container.RegisterType<IItemCatalog, ItemCatalog>();
+            container.RegisterType<IReviewManager, ReviewManager>();
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

@@ -1,14 +1,12 @@
-﻿using SampleReview.Common;
-using SampleReview.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SampleReview.Data.Context;
 
 namespace SampleReview.DataDriver.Context {
-    public class ContextFactory : IFactory<IDbContext> {
-        protected IDbContext _singleContext;
-        public IDbContext Instance { get {return _singleContext ?? (_singleContext = new ReviewContext()); } }
+    public class ContextFactory : IDbContextFactory {
+        protected IDbContext singleContext;
+        public IDbContext Instance { get {return singleContext ?? (singleContext = new ReviewContext()); } }
+
+        public void Dispose() {
+            if (singleContext != null) singleContext.Dispose();
+        }
     }
 }

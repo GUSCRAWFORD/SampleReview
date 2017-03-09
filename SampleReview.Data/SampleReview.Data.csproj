@@ -51,9 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\DominModelExtensions.cs" />
+    <Compile Include="Domain\DominModelExtensions.cs" />
     <Compile Include="Context\IDbContext.cs" />
-    <Compile Include="Context\LinqExtensions.cs" />
+    <Compile Include="Context\IDbContextFactory.cs" />
+    <Compile Include="Context\Extensions.cs" />
     <Compile Include="Domain\Item\AnalyzedItem.cs" />
     <Compile Include="Domain\AnyDomainModel.cs" />
     <Compile Include="Domain\Item\AnyItem.cs" />
@@ -63,7 +64,12 @@
     <Compile Include="Repo\Repo.cs" />
     <Compile Include="Repo\IRepo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SampleReview.Common\SampleReview.Common.csproj">
+      <Project>{1ee8b34d-55d3-4bed-924b-a474a7c05a41}</Project>
+      <Name>SampleReview.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\Feature.cs" />
+    <Compile Include="Features\ReviewManager.cs" />
     <Compile Include="Features\ItemCatalog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

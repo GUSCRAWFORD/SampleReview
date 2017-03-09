@@ -1,11 +1,10 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using SampleReview.Common;
+﻿using SampleReview.Business.Models;
 using SampleReview.Data.Context;
 
 namespace SampleReview.BusinessDriver.Features {
     public abstract class Feature {
         protected IDbContext context;
-        public Feature(IFactory<IDbContext> contextFactory) {
+        public Feature(IDbContextFactory contextFactory) {
             context = contextFactory.Instance;
         }
 
@@ -19,10 +18,14 @@ namespace SampleReview.BusinessDriver.Features {
             }
             return b;
         }
-        protected TViewModel ToViewModel<TViewModel, TDomainModel>(TDomainModel domain) where TViewModel : new() {
+        protected TViewModel ToViewModel<TViewModel, TDomainModel>(TDomainModel domain)
+                where TViewModel : AnyModel, new()
+                where TDomainModel : Data.Domain.AnyDomainModel {
             return ToModel<TViewModel, TDomainModel>(domain);
         }
-        protected TDomainModel ToDomainModel<TDomainModel, TViewModel>(TViewModel model) where TDomainModel : new() {
+        protected TDomainModel ToDomainModel<TDomainModel, TViewModel>(TViewModel model)
+                where TViewModel : AnyModel
+                where TDomainModel : Data.Domain.AnyDomainModel, new() {
             return ToModel<TDomainModel, TViewModel>(model);
         }
     }

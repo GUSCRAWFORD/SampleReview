@@ -2,6 +2,8 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap-theme.css';
 body {
     margin:10pt;
+    user-select:none;
+    cursor:default;
 }
 
 .footer {
@@ -28,6 +30,36 @@ body {
     &-text-bottom {
         vertical-align:text-bottom
     }
+}
+
+[ng-click] {
+    cursor:pointer;
+}
+
+.selectable {
+    cursor:text;
+    user-select:element;
+    &-text {
+        user-select:text;
+    }
+
+}
+
+.rounded-border {
+    border: 1px solid #ccc;
+    border-radius:12pt;
+    margin-bottom:12pt;
+    margin-right:6pt;
+    margin-left: 6pt;
+    padding:4pt;
+}
+
+.organizer {
+
+}
+
+.result-list {
+
 }
 @import 'loading-spinner.scss';
 @import 'catalog/catalog.scss';

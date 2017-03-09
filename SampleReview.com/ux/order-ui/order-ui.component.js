@@ -1,5 +1,5 @@
 ﻿var angular = require('angular');
-angular.module('ui.smithReview')
+angular.module('ui.review')
 	.component('orderUi', {
 		template: require('./order-ui.template.html'),
 		controller: orderUiController,

@@ -8,6 +8,6 @@ namespace SampleReview.Business.Models {
     public class Page<TAnyModel>
         where TAnyModel : AnyModel {
         public IEnumerable<TAnyModel> Collection { get; set; }
-        public int OfTotalItems { get; set; }
+        public int TotalItems { get; set; }
     }
 }
