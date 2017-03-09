@@ -90,10 +90,10 @@
     <Content Include="build-scripts\Gruntfile.js" />
     <Content Include="build-scripts\webpack.config.js" />
     <Content Include="Default.aspx" />
-    <Content Include="tests\app\app.smithReview.module.spec.js" />
+    <Content Include="tests\app\app.review.module.spec.js" />
     <Content Include="tests\app\services\rest\review.resource.spec.js" />
     <Content Include="tests\karma.conf.js" />
-    <Content Include="tests\ui.smithReview.mock.module.js" />
+    <Content Include="tests\ui.review.mock.module.js" />
     <Content Include="ux\catalog\catalog.template.html" />
     <Content Include="ux\catalog\catalog.view.js" />
     <Content Include="ux\catalog\index.js" />

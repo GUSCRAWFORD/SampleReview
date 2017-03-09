@@ -1,5 +1,6 @@
 ﻿describe('module', function () {
-	beforeEach('ui.smithReview.module')
+	beforeEach(function () { module('ui.review.module') });
+	it('something', function () { })
 });
 
 /*var angular = require('angular');

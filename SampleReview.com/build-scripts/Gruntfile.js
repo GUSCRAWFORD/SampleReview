@@ -5,7 +5,7 @@
 		pkg: grunt.file.readJSON('package.json'),
 		watch: {
 			scripts: {
-				files: ['./app/**/*.js', './ux/**/*.js', './ux/**/*.html', './tests/**/*.js'],
+				files: ['./app/**/*.js', './ux/**/*.js', './ux/**/*.html'],
 				tasks: ['webpack'],
 				options: {
 					spawn: false,

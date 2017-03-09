@@ -1,6 +1,6 @@
 // Karma configuration
 // Generated on Sun Mar 05 2017 15:42:42 GMT-0500 (Eastern Standard Time)
-
+var path = require('path');
 module.exports = function(config) {
   config.set({
 
@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './ui.smithReview.mock.module.js',
+      './ui.review.mock.module.js',
       './app/**/*.spec.js',
       './ux/**/*.spec.js'
     ],
@@ -30,18 +30,12 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
     	// add webpack as preprocessor
-    	'../ux/ui.smithReview.module.js': ['webpack']
+    	'./ui.review.mock.module.js': ['webpack']
     },
 
 
     webpack:{
-    	entry: './ui.smithReview.mock.module.js',
     	devtool: 'source-map',
-    	output: {
-    		filename: 'ui.smithReview.test-pack.js',
-    		path: path.resolve(__dirname, './'),
-    		devtoolLineToLine: { test: './**' }
-    	},
     	module: {
     		rules: [{
     			test: /\.html$/i,
@@ -74,7 +68,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'PhantomJS', 'IE', 'Safari', 'Firefox'],
+    browsers: ['PhantomJS',/* 'Chrome', 'IE', 'Safari', 'Firefox'*/],
 
 
     // Continuous Integration mode
