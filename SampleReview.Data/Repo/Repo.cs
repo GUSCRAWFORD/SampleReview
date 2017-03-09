@@ -7,10 +7,10 @@ using System.Linq;
 using System.Linq.Expressions;
 
 namespace SampleReview.Data.Repo {
-    public class GenRepo<TContext, TDomain> : IGenRepo<TContext, TDomain>
+    public class Repo<TContext, TDomain> : IGenRepo<TContext, TDomain>
             where TDomain : AnyDomainModel
             where TContext : IDbContext {
-        public GenRepo(IDbContext context) {
+        public Repo(IDbContext context) {
             _context = (TContext) context;
             _dbSet = _context.Set<TDomain>();
         }
@@ -27,27 +27,27 @@ namespace SampleReview.Data.Repo {
             }
         }
 
-        public virtual GenRepo<TContext, TDomain> Include(params string[] includedProperties) {
+        public virtual Repo<TContext, TDomain> Include(params string[] includedProperties) {
             _query = _query ?? _dbSet;
             foreach(string include in includedProperties) {
                 _query = _query.Include(include);
             }
             return this;
         }
-        public virtual GenRepo<TContext, TDomain> Query(
+        public virtual Repo<TContext, TDomain> Query(
                 int page = 0,
                 int perPage = 0,
                 params string[] orderBy) {
             return Query<TDomain>(null, null, page, perPage, orderBy);
         }
-        public virtual GenRepo<TContext, TDomain> Query(
+        public virtual Repo<TContext, TDomain> Query(
                 Expression<Func<TDomain, bool>> predicate,
                 int page = 0,
                 int perPage = 0,
                 params string[] orderBy) {
             return Query<TDomain>(null, predicate, page, perPage, orderBy);
         }
-        public GenRepo<TContext, TDomain> Query<TResult>(
+        public Repo<TContext, TDomain> Query<TResult>(
                 Expression<Func<TDomain, TResult>> select = null,
                 Expression<Func<TDomain, bool>> predicate = null,
                 int page = 0,
@@ -80,8 +80,9 @@ namespace SampleReview.Data.Repo {
                     .Take(perPage);
             _queryDetails = new QueryDetails {
                 RecordsReturned = projectedQuery.Count(),
-                OfTotalRecords = query.Count()
+                TotalRecords = query.Count()
             };
+            _query = query;
             _projectedQuery = (IQueryable<object>)projectedQuery;
             return this;
         }
@@ -98,7 +99,7 @@ namespace SampleReview.Data.Repo {
         public virtual TDomain Find(params object[] keyValues) {
             return _dbSet.Find(keyValues);
         }
-        public GenRepo<TContext, TDomain> AsNoTracking() {
+        public Repo<TContext, TDomain> AsNoTracking() {
             _query = _query == null ? _dbSet.AsNoTracking() : _query.AsNoTracking();
             return this;
         }
@@ -106,7 +107,7 @@ namespace SampleReview.Data.Repo {
            return _query.ToList();
         }
         public IEnumerable<TResult> Result<TResult>() {
-           return (IEnumerable<TResult>) _query.ToList();
+           return (IEnumerable<TResult>) _projectedQuery.ToList();
         }
     }
 }

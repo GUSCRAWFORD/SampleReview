@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Microsoft.Practices.ServiceLocation;
+using SampleReview.Business.Features;
+using SampleReview.Business.Models;
+using SampleReview.BusinessDriver.Features;
+using SampleReview.Common;
+using SampleReview.Data.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,33 +15,34 @@ namespace SampleReview.RestApi.Controllers
 {
     public class ItemsController : AnyController
     {
+        public ItemsController(IFactory<IDbContext> contextFactory, ItemCatalog itemCatalog) : base (contextFactory) {
+            this.itemCatalog = itemCatalog;
+        }
+        protected IItemCatalog itemCatalog;
         // GET: api/Items
-        public override IEnumerable<string> Get()
+        public Page<Item> Get(int page=0, int perPage=0, string orderBy="")
         {
-            using(_contextFactory.Instance) {
-
-            }
-            return new string[] { "value1", "value2" };
+            return itemCatalog.All(page, perPage, orderBy.Split(','));
         }
 
         // GET: api/Items/5
-        public override string Get(int id)
+        public string Get(int id)
         {
             return "value";
         }
 
         // POST: api/Items
-        public override void Post([FromBody]string value)
+        public void Post([FromBody]string value)
         {
         }
 
         // PUT: api/Items/5
-        public override void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE: api/Items/5
-        public override void Delete(int id)
+        public void Delete(int id)
         {
         }
     }

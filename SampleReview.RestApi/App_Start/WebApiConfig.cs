@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Practices.Unity;
 using System.Web.Http;
 
 namespace SampleReview.RestApi
@@ -10,6 +8,7 @@ namespace SampleReview.RestApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            UnityConfig.RegisterComponents();
 
             // Web API routes
             config.MapHttpAttributeRoutes();
