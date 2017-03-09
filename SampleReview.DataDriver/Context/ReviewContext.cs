@@ -1,7 +1,9 @@
 namespace SampleReview.DataDriver.Context {
+
     using System.Data.Entity;
     using Data.Context;
     using Data.Domain;
+
     public partial class ReviewContext : DbContext, IDbContext {
         public ReviewContext()
             : base("name=ReviewContext") {
