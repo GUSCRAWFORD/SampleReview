@@ -1,0 +1,22 @@
+﻿<form ng-disabled="$ctrl.disabled">
+    <div class="btn-group" uib-dropdown>
+        <button id="reverse{{$ctrl.id}}" type="button" class="btn btn-default" ng-click="$ctrl.reverse($ctrl.order.by[0])">
+            <i class="fa fa-sort-{{$ctrl.order.options[$ctrl.stripAsc($ctrl.order.by[0])].type}}-{{$ctrl.asc($ctrl.order.by[0])?'asc':'desc'}}" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-default" uib-dropdown-toggle>
+            {{$ctrl.order.options[$ctrl.stripAsc($ctrl.order.by[0])].prefix[($ctrl.asc($ctrl.order.by[0])?'asc':'desc')]}}
+            {{$ctrl.order.options[$ctrl.stripAsc($ctrl.order.by[0])].label}}
+            <span class="caret"></span>
+            <span class="sr-only">Arrange by</span>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="reverse{{$ctrl.id}}">
+            <li ng-repeat="column in $ctrl.order.by"
+                role="menuitem">
+                <a ng-click="$ctrl.orderBy($ctrl.stripAsc(column))">
+                    {{$ctrl.order.options[$ctrl.stripAsc(column)].prefix[(($ctrl.order.options[$ctrl.stripAsc(column)].defaultAsc=='+')?'asc':'desc')]}}
+                    {{$ctrl.order.options[$ctrl.stripAsc(column)].label}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</form>

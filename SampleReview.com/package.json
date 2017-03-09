@@ -1,0 +1,36 @@
+{
+  "name": "ui.smith-review",
+  "version": "1.0.0",
+  "description": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gus Crawford",
+  "license": "MIT",
+  "devDependencies": {
+    "angular": "^1.6.2",
+    "angular-bootstrap-npm": "^0.14.3",
+    "angular-mocks": "^1.6.2",
+    "angular-resource": "^1.6.2",
+    "angular-route": "^1.6.2",
+    "bootstrap": "^3.3.7",
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^2.0.0",
+    "grunt-webpack": "^2.0.1",
+    "html-loader": "^0.4.5",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-webpack": "^2.0.2",
+    "load-grunt-tasks": "^3.5.2",
+    "node-sass": "^4.5.0",
+    "phantomjs": "^2.1.7",
+    "webpack": "^2.2.1"
+  }
+}

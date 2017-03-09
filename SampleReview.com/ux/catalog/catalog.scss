@@ -1,0 +1,16 @@
+﻿catalog,review {
+    > div{ padding-bottom:6pt; }
+    .item-icon {
+        padding-left:6pt;
+        padding-right:6pt;
+        .fa {
+            font-size:36pt;
+        }
+    }
+    [uib-pagination] {
+        margin:0px;
+    }
+    .organizer {
+        vertical-align:middle;
+    }
+}

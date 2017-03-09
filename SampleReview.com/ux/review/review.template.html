@@ -1,0 +1,93 @@
+﻿<!--
+{   
+    "Id":1,
+    "Name":"GitHub",
+    "Icon":null,
+    "AverageRating":5,
+    "SampleSize":1,
+    "Highest":5,
+    "Lowest":5
+}
+-->
+<div class="row marketing">
+    <div ng-if="$ctrl.busy">
+        <span class="fa fa-lg fa-spinner loading-spinner" aria-hidden="true"></span> {{ $ctrl.busyMessage || 'Loading...' }}
+    </div>
+    <div class="col-lg-12 form-horizontal">
+        <div class="inline-block item-icon">
+            <span class="fa fa-{{$ctrl.item.Icon}}" aria-hidden="true"></span>
+        </div>
+
+        <div class="inline-block">
+            <h4>{{ $ctrl.item.Name }}</h4>
+            <p>
+                <div ng-show="$ctrl.editing"
+                     name="ratingField"
+                     uib-rating ng-model="$ctrl.editing.Rating"
+                     max="$ctrl.constraints.maxRating"
+                     min="$ctrl.constraints.minRating"
+                     aria-labelledby="default-rating"></div>
+
+                <div ng-show="$ctrl.item&&!$ctrl.editing"
+                     uib-rating ng-model="$ctrl.item.AverageRating"
+                     max="$ctrl.constraints.maxRating"
+                     aria-labelledby="default-rating"
+                     ng-change="$ctrl.edit($ctrl.item.AverageRating)"></div>
+
+                <div class="text-muted">{{ $ctrl.item.Date | date: "MMMM d, yyyy" }}, {{$ctrl.item.ReviewCount}} Review{{$ctrl.item.ReviewCount > 1?'s':''}}</div>
+            </p>
+        </div>
+    </div>
+    <div ng-if="$ctrl.editing">
+        <textarea ng-model="$ctrl.editing.Comment"
+                  class="form-control"
+                  placeholder="Comment"
+                  name="commentField"
+                   ng-required="true"
+                   ng-minlength="$ctrl.constraints.minCommentLength"></textarea>
+        <div class="text-right">
+            <div class="text-danger" ng-if="$ctrl.invalidBlock && $ctrl.form.$invalid">
+                <span ng-if="$ctrl.form.commentField.$error.required">A comment is required</span>
+                <span ng-if="$ctrl.form.commentField.$error.minlength">An insightful comment is required</span>
+            </div>
+            <button ng-click="$ctrl.discardEdit()" class="btn btn-default">Cancel</button>
+            <button ng-click="$ctrl.saveEdit()"
+               ng-disabled="$ctrl.invalidBlock && $ctrl.form.$invalid" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+    <hr>
+   <!--
+       
+{"Id":2,"Rating":5,"Comment":"Awesome!"}   
+    -->
+    <div class="col-lg-12 organizer">
+        <div class="inline-block">
+            <ul uib-pagination ng-change="$ctrl.refresh()"
+                items-per-page="$ctrl.orderReview.perPage"
+                total-items="$ctrl.orderReview.totalItems"
+                ng-model="$ctrl.orderReview.page"
+                ng-hide="$ctrl.busy"
+                max-size="10" class="pagination" boundary-links="true" rotate="false"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+        </div>
+        <div class="inline-block pull-right">
+            <order-ui id="{{$ctrl.item.Id}}"
+                      order="$ctrl.orderReview"
+                      update="$ctrl.refresh()"
+                      disabled="$ctrl.busy"></order-ui>
+        </div>
+    </div>
+    <hr>
+    <div ng-if="!$ctrl.busy"
+         class="col-lg-6"
+         ng-repeat="review in $ctrl.reviews">
+        <span>{{ review.Comment }}</span>
+        <p>
+            <div uib-rating ng-model="review.Rating"
+                  max="$ctrl.constraints.maxRating"
+                  readonly="true"
+                  aria-labelledby="default-rating"></div>
+            <div class="text-muted">{{ review.Date | date: "MMMM d, yyyy" }}</div>
+        </p>
+    </div>
+</div>
