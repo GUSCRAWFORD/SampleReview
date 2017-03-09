@@ -1,6 +1,8 @@
-﻿describe('module', function () {
+﻿describe('ui.review.module', function () {
 	beforeEach(function () { module('ui.review.module') });
-	it('something', function () { })
+	it('resolves', function () {
+
+	});
 });
 
 /*var angular = require('angular');
