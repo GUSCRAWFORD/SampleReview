@@ -1,0 +1,108 @@
+@import url(../node_modules/bootstrap/dist/css/bootstrap.css);
+@import url(../node_modules/bootstrap/dist/css/bootstrap-theme.css);
+body {
+  margin: 10pt;
+  user-select: none;
+  cursor: default; }
+
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5; }
+
+@font-face {
+  font-family: bowtie;
+  src: url(https://cdn.vsassets.io/v/20170302T003052/_content/Fonts/Icons/bowtie.woff); }
+
+.vso-icon::before {
+  font-family: bowtie;
+  content: "\e91d ";
+  font-style: normal; }
+
+.inline-block {
+  display: inline-block;
+  vertical-align: text-top; }
+  .inline-block-middle {
+    vertical-align: middle; }
+  .inline-block-text-bottom {
+    vertical-align: text-bottom; }
+
+[ng-click] {
+  cursor: pointer; }
+
+.selectable {
+  cursor: text;
+  user-select: element; }
+  .selectable-text {
+    user-select: text; }
+
+.rounded-border {
+  border: 1px solid #ccc;
+  border-radius: 12pt;
+  margin-bottom: 12pt;
+  margin-right: 6pt;
+  margin-left: 6pt;
+  padding: 4pt; }
+
+[loading-spinner], .loading-spinner {
+  font-size: 96pt;
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 1000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: spin;
+  -moz-animation-duration: 1000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: spin;
+  -ms-animation-duration: 1000ms;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; }
+
+@-ms-keyframes spin {
+  from {
+    -ms-transform: rotate(360deg); }
+  to {
+    -ms-transform: rotate(0deg); } }
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(360deg); }
+  to {
+    -moz-transform: rotate(0deg); } }
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(360deg); }
+  to {
+    -webkit-transform: rotate(0deg); } }
+
+@keyframes spin {
+  from {
+    transform: rotate(360deg); }
+  to {
+    transform: rotate(0deg); } }
+
+catalog > div, review > div {
+  padding-bottom: 6pt; }
+
+catalog .item-icon, review .item-icon {
+  padding-left: 6pt;
+  padding-right: 6pt; }
+  catalog .item-icon .fa, review .item-icon .fa {
+    font-size: 36pt; }
+
+catalog [uib-pagination], review [uib-pagination] {
+  margin: 0px; }
+
+catalog .organizer, review .organizer {
+  vertical-align: middle; }
+
+textarea.form-control {
+  margin-bottom: 6pt; }
+
+/*# sourceMappingURL=review.style.css.map */
