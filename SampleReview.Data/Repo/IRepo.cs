@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SampleReview.Data.Repo {
-    public interface IGenRepo<TContext, TDomain>
+    public interface IRepo<TContext, TDomain>
             where TDomain : AnyDomainModel
             where TContext : IDbContext {
 

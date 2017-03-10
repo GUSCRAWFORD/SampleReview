@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 namespace SampleReview.Data.Repo {
-    public class Repo<TContext, TDomain> : IGenRepo<TContext, TDomain>
+    public class Repo<TContext, TDomain> : IRepo<TContext, TDomain>
             where TDomain : AnyDomainModel
             where TContext : IDbContext {
         public Repo(IDbContext context) {
@@ -61,18 +61,22 @@ namespace SampleReview.Data.Repo {
             if (predicate != null) query = query.Where(predicate);
             projectedQuery = select!= null ? query.Select(select) : projectedQuery = (IQueryable<TResult>)query;
             
-            if (orderBy != null) {
-                foreach(string column in orderBy){
-                    char firstChar = column.First();
-                    string columnName = firstChar == '+' || firstChar == '-' ? column.Substring(1) : column;
+
+            foreach(string column in orderBy){
+                char firstChar = column.First();
+                string columnName = firstChar == '+' || firstChar == '-' ? column.Substring(1) : column;
+                if (columnName != "this") {
                     if (orderedQuery != null)
                         orderedQuery = firstChar == '-' ? orderedQuery.ThenByDescending(columnName.ToPascal()) : orderedQuery.ThenBy(columnName.ToPascal());
                     else
                         orderedQuery = firstChar == '-' ?  projectedQuery.OrderByDescending(columnName.ToPascal()) : projectedQuery.OrderBy(columnName.ToPascal());
                 }
+                else {
+                    orderedQuery = firstChar == '-' ? projectedQuery.OrderByDescending(x=>x) : projectedQuery.OrderBy(x=> x);
+                }
             }
 
-            projectedQuery = (orderedQuery ?? projectedQuery);
+            projectedQuery = orderedQuery;
             if (page > 0 && perPage > 0)
                 projectedQuery = projectedQuery
                     .Skip((page - 1) * perPage)
@@ -85,6 +89,7 @@ namespace SampleReview.Data.Repo {
             _projectedQuery = (IQueryable<object>)projectedQuery;
             return this;
         }
+
         public virtual void Upsert(TDomain item) {
             if (item.HasEmptyId()) {
                 _dbSet.Add(item);
@@ -98,6 +103,7 @@ namespace SampleReview.Data.Repo {
         public virtual TDomain Find(params object[] keyValues) {
             return _dbSet.Find(keyValues);
         }
+
         public Repo<TContext, TDomain> AsNoTracking() {
             _query = _query == null ? _dbSet.AsNoTracking() : _query.AsNoTracking();
             return this;
@@ -105,6 +111,7 @@ namespace SampleReview.Data.Repo {
         public IEnumerable<TDomain> Result() {
            return ((IEnumerable<TDomain>) _projectedQuery ?? _query).ToList();
         }
+
         public IEnumerable<TResult> Result<TResult>() {
            return (IEnumerable<TResult>) _projectedQuery.ToList();
         }
