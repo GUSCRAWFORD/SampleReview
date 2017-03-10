@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A011AA99-0323-4651-8AEB-1ED23C231CBA}</ProjectGuid>
+    <ProjectGuid>{5AAA2652-3CA7-4453-B3A8-1C5AD29B691E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SampleReview.DataTests</RootNamespace>
-    <AssemblyName>SampleReview.DataTests</AssemblyName>
+    <RootNamespace>SampleReview.BusinessTests</RootNamespace>
+    <AssemblyName>SampleReview.BusinessTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -40,20 +40,11 @@
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -68,22 +59,28 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Features\ItemCatalogTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repo\RepoTests.cs" />
-    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SampleReview.BusinessDriver\SampleReview.BusinessDriver.csproj">
+      <Project>{F3FA8285-9A37-449D-A645-D2959CCBF33C}</Project>
+      <Name>SampleReview.BusinessDriver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleReview.Business\SampleReview.Business.csproj">
+      <Project>{2749fa0f-1a63-4240-84c0-d69cd6bd4c27}</Project>
+      <Name>SampleReview.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SampleReview.Common\SampleReview.Common.csproj">
       <Project>{1ee8b34d-55d3-4bed-924b-a474a7c05a41}</Project>
       <Name>SampleReview.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\SampleReview.Data\SampleReview.Data.csproj">
-      <Project>{85ADA1AE-51DC-4789-964E-745DECEF4689}</Project>
+      <Project>{85ada1ae-51dc-4789-964e-745decef4689}</Project>
       <Name>SampleReview.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

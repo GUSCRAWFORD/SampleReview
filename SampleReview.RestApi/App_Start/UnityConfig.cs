@@ -6,6 +6,8 @@ using SampleReview.DataDriver.Context;
 using SampleReview.BusinessDriver.Features;
 using SampleReview.Business.Features;
 using SampleReview.Common;
+using SampleReview.Data.Domain;
+using SampleReview.Data.Repo;
 
 namespace SampleReview.RestApi
 {
@@ -24,6 +26,8 @@ namespace SampleReview.RestApi
             container.RegisterInstance<IDbContextFactory>(dbContextFactory);
             container.RegisterType<IItemCatalog, ItemCatalog>();
             container.RegisterType<IReviewManager, ReviewManager>();
+            container.RegisterType<IRepo<IDbContext, AnyItem>,Repo<IDbContext, AnyItem>>();
+            container.RegisterType<IRepo<IDbContext, Review>,Repo<IDbContext, Review>>();
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

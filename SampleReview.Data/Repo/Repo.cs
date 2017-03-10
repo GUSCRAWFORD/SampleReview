@@ -10,56 +10,56 @@ namespace SampleReview.Data.Repo {
     public class Repo<TContext, TDomain> : IRepo<TContext, TDomain>
             where TDomain : AnyDomainModel
             where TContext : IDbContext {
-        public Repo(IDbContext context) {
-            _context = (TContext) context;
-            _dbSet = _context.Set<TDomain>();
+        public Repo(IDbContextFactory contextFactory) {
+            context = (TContext) contextFactory.Instance;
+            this.contextFactory = contextFactory;
+            dbSet = context.Set<TDomain>();
         }
 
-        protected TContext _context;
-        protected DbSet<TDomain> _dbSet;
-        protected IQueryable<TDomain> _query;
-        protected IQueryable<object> _projectedQuery;
-        protected QueryDetails _queryDetails;
+        protected IDbContextFactory contextFactory;
+        protected TContext context;
+        protected DbSet<TDomain> dbSet;
+        protected IQueryable<TDomain> query;
+        protected IQueryable<object> projectedQuery;
+        protected QueryDetails queryDetails;
 
         public QueryDetails Details {
             get {
-                return _queryDetails;
+                return queryDetails;
             }
         }
 
-        public virtual Repo<TContext, TDomain> Include(params string[] includedProperties) {
-            _query = _query ?? _dbSet;
+        public virtual IRepo<TContext, TDomain> Include(params string[] includedProperties) {
+            query = dbSet;
             foreach(string include in includedProperties) {
-                _query = _query.Include(include);
+                query = query.Include(include);
             }
             return this;
         }
-        public virtual Repo<TContext, TDomain> Query(
+        public virtual IRepo<TContext, TDomain> Query(
                 int page = 0,
                 int perPage = 0,
                 params string[] orderBy) {
             return Query<TDomain>(null, null, page, perPage, orderBy);
         }
-        public virtual Repo<TContext, TDomain> Query(
+        public virtual IRepo<TContext, TDomain> Query(
                 Expression<Func<TDomain, bool>> predicate,
                 int page = 0,
                 int perPage = 0,
                 params string[] orderBy) {
             return Query<TDomain>(null, predicate, page, perPage, orderBy);
         }
-        public Repo<TContext, TDomain> Query<TResult>(
+        public IRepo<TContext, TDomain> Query<TResult>(
                 Expression<Func<TDomain, TResult>> select = null,
                 Expression<Func<TDomain, bool>> predicate = null,
                 int page = 0,
                 int perPage = 0,
                 params string[] orderBy) {
-
-            IQueryable<TDomain> query = _query ?? _dbSet;
+            query = query ?? dbSet;
             IOrderedQueryable<TResult> orderedQuery = null;
             IQueryable<TResult> projectedQuery = null;
-
             if (predicate != null) query = query.Where(predicate);
-            projectedQuery = select!= null ? query.Select(select) : projectedQuery = (IQueryable<TResult>)query;
+            projectedQuery = select!= null ? query.Select(select) : (IQueryable<TResult>)query;
             
 
             foreach(string column in orderBy){
@@ -81,39 +81,41 @@ namespace SampleReview.Data.Repo {
                 projectedQuery = projectedQuery
                     .Skip((page - 1) * perPage)
                     .Take(perPage);
-            _queryDetails = new QueryDetails {
+            queryDetails = new QueryDetails {
                 RecordsReturned = projectedQuery.Count(),
                 TotalRecords = query.Count()
             };
-            _query = query;
-            _projectedQuery = (IQueryable<object>)projectedQuery;
+            this.projectedQuery = (IQueryable<object>)projectedQuery;
             return this;
         }
 
         public virtual void Upsert(TDomain item) {
             if (item.HasEmptyId()) {
-                _dbSet.Add(item);
+                dbSet.Add(item);
             }
             else {
-                _dbSet.Attach(item);
-                _context.Entry(item).State = EntityState.Modified;
+                dbSet.Attach(item);
+                context.Entry(item).State = EntityState.Modified;
             }
         }
 
+        public IRepo<TContext, TDomainChild> ToRepo<TDomainChild>() where TDomainChild : TDomain {
+            return new Repo<TContext, TDomainChild>(contextFactory);
+        }
         public virtual TDomain Find(params object[] keyValues) {
-            return _dbSet.Find(keyValues);
+            return dbSet.Find(keyValues);
         }
 
-        public Repo<TContext, TDomain> AsNoTracking() {
-            _query = _query == null ? _dbSet.AsNoTracking() : _query.AsNoTracking();
+        public IRepo<TContext, TDomain> AsNoTracking() {
+            query = query == null ? dbSet.AsNoTracking() : query.AsNoTracking();
             return this;
         }
         public IEnumerable<TDomain> Result() {
-           return ((IEnumerable<TDomain>) _projectedQuery ?? _query).ToList();
+           return ((IEnumerable<TDomain>) projectedQuery ?? query).ToList();
         }
 
         public IEnumerable<TResult> Result<TResult>() {
-           return (IEnumerable<TResult>) _projectedQuery.ToList();
+           return (IEnumerable<TResult>) projectedQuery.ToList();
         }
     }
 }

@@ -12,22 +12,23 @@ namespace SampleReview.Data.Repo {
             where TDomain : AnyDomainModel
             where TContext : IDbContext {
 
-        Repo<TContext, TDomain> Include(params string[] includedProperties);
+        IRepo<TContext, TDomainChild> ToRepo<TDomainChild>() where TDomainChild : TDomain;
+        IRepo<TContext, TDomain> Include(params string[] includedProperties);
 
-        Repo<TContext, TDomain> AsNoTracking();
+        IRepo<TContext, TDomain> AsNoTracking();
 
-        Repo<TContext, TDomain> Query(
+        IRepo<TContext, TDomain> Query(
                 int page = 0,
                 int perPage = 0,
                 params string[] orderBy);
 
-        Repo<TContext, TDomain> Query(
+        IRepo<TContext, TDomain> Query(
                 Expression<Func<TDomain, bool>> predicate,
                 int page = 0,
                 int perPage = 0,
                 params string[] orderBy);
 
-        Repo<TContext, TDomain> Query<TResult>(
+        IRepo<TContext, TDomain> Query<TResult>(
                 Expression<Func<TDomain, TResult>> select,
                 Expression<Func<TDomain, bool>> predicate,
                 int page = 0,
