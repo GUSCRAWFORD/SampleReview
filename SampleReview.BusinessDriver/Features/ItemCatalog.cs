@@ -17,14 +17,15 @@ namespace SampleReview.BusinessDriver.Features {
         protected IRepo<IDbContext, AnyItem> itemRepo;
 
         public Page<Business.Models.Item> All(int page, int perPage, string[] orderBy) {
-            var results = itemRepo.ToRepo<AnalyzedItem>()
+            var analyzedItemRepo = itemRepo.ToRepo<AnalyzedItem>();
+            var results = analyzedItemRepo
                             .Query(page, perPage, orderBy)
                             .Result()
                             .Select(itm=>ToViewModel(itm));
 
             return new Page<Business.Models.Item> {
                 Collection = results,
-                TotalItems = itemRepo.Details.TotalRecords
+                TotalItems = analyzedItemRepo.Details.TotalRecords
             };
         }
 
@@ -33,7 +34,8 @@ namespace SampleReview.BusinessDriver.Features {
         }
 
         public Business.Models.Item ByName(string name) {
-            return  itemRepo.ToRepo<AnalyzedItem>()
+            var analyzedItemRepo = itemRepo.ToRepo<AnalyzedItem>();
+            return analyzedItemRepo
                             .Query(itm=>itm.Name == name, 0, 0)
                             .Result()
                             .Select(itm=>ToViewModel<Business.Models.Item,AnalyzedItem>(itm))

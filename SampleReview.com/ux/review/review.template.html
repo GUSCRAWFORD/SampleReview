@@ -66,10 +66,10 @@
                 max-size="10" class="pagination" boundary-links="true" rotate="false"
                 previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
         </div>
-        <div ng-if="$ctrl.busy" class="inline-block inline-block-bottom">
+        <div ng-if="$ctrl.busy" class="inline-block">
             <span class="fa fa-lg fa-spinner loading-spinner" aria-hidden="true"></span> Loading...
         </div>
-        <div ng-if="$ctrl.failed" class="inline-block inline-block-bottom">
+        <div ng-if="$ctrl.failed" class="inline-block">
             <span class="fa fa-lg fa-ban text-danger" aria-hidden="true"></span> Loading failed <a ng-click="$ctrl.refresh()">try again</a>?
         </div>
         <div class="inline-block pull-right">
