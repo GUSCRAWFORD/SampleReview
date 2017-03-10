@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleReview.RestApi", "SampleReview.RestApi\SampleReview.RestApi.csproj", "{4D6648AA-9801-4B78-9643-D32FD209DEF6}"
 EndProject
@@ -18,6 +18,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleReview.Business", "SampleReview.Business\SampleReview.Business.csproj", "{2749FA0F-1A63-4240-84C0-D69CD6BD4C27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleReview.com", "SampleReview.com\SampleReview.com.csproj", "{13B0B9F2-947A-495E-9B6F-5A3D1A1D123C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EDA2FC2A-EB10-4898-B892-3B927E3C7F13}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
