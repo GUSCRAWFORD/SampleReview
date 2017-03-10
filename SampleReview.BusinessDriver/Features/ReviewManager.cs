@@ -8,11 +8,11 @@ using System;
 
 namespace SampleReview.BusinessDriver.Features {
     public class ReviewManager : Feature, IReviewManager {
-        public ReviewManager (IDbContextFactory contextFactory) : base(contextFactory) {            
-            reviewRepo = new Repo<IDbContext, Data.Domain.Review>(context);
+        public ReviewManager (IDbContextFactory contextFactory, IRepo<IDbContext, Data.Domain.Review> reviewRepo) : base(contextFactory) {            
+            this.reviewRepo = reviewRepo;
         }
 
-        protected Repo<IDbContext, Data.Domain.Review> reviewRepo;
+        protected IRepo<IDbContext, Data.Domain.Review> reviewRepo;
         public Page<Review> All(int item, int page, int perPage, string[] orderBy) {
             var results = reviewRepo
                             .Query(rvw=>rvw.Reviewing == item, page, perPage, orderBy)
