@@ -12,7 +12,7 @@
 <div class="row marketing rounded-border">
     <div class="col-lg-12 form-horizontal">
         <div class="inline-block item-icon">
-            <span class="fa fa-{{$ctrl.item.icon}}" style="color:{{$ctrl.item.color}}" aria-hidden="true"></span>
+            <span class="fa fa-{{$ctrl.item.icon}}" ng-style="{color:item.color}" aria-hidden="true"></span>
         </div>
 
         <div class="inline-block">
@@ -81,7 +81,7 @@
     </div>
     <div class="result-list">
         <div ng-if="!$ctrl.busy"
-             class="col-lg-6"
+             class="col-md-6"
              ng-repeat="review in $ctrl.reviews">
             <span>{{ review.comment }}</span>
             <p>
