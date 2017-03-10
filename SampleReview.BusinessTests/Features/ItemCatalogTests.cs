@@ -18,6 +18,7 @@ namespace SampleReview.BusinessDriver.Features.Tests {
         Mock<IDbContextFactory> mockContextFactory;
         Mock<IDbContext> mockContext;
         Mock<IRepo<IDbContext, AnyItem>> mockRepo;
+        Mock<IRepo<IDbContext, AnalyzedItem>> mockAnalyzedItemsRepo;
         IItemCatalog itemCatalog;
         
         [TestInitialize]
@@ -26,15 +27,16 @@ namespace SampleReview.BusinessDriver.Features.Tests {
             mockContext = new Mock<IDbContext>();
             mockContextFactory.Setup(fac=>fac.Instance).Returns(mockContext.Object);
             mockRepo = new Mock<IRepo<IDbContext, AnyItem>>();
+            mockAnalyzedItemsRepo = new Mock<IRepo<IDbContext, AnalyzedItem>>();
             itemCatalog = new ItemCatalog(mockContextFactory.Object, mockRepo.Object);
         }
 
         [TestMethod]
         public void ItemCatalogTest() {
             var mockResult = new List<AnalyzedItem> {
-                new Data.Domain.AnalyzedItem { Id = 1, Name = "item" }, new Data.Domain.AnalyzedItem { Id = 4, Name = "page1" },
-                new Data.Domain.AnalyzedItem { Id = 2, Name = "page1" },new Data.Domain.AnalyzedItem { Id = 5, Name = "item3" },
-                new Data.Domain.AnalyzedItem { Id = 3, Name = "page1" },new Data.Domain.AnalyzedItem { Id = 6, Name = "item3" }
+                new AnalyzedItem { Id = 1, Name = "item" }, new AnalyzedItem { Id = 4, Name = "page1" },
+                new AnalyzedItem { Id = 2, Name = "page1" },new AnalyzedItem { Id = 5, Name = "item3" },
+                new AnalyzedItem { Id = 3, Name = "page1" },new AnalyzedItem { Id = 6, Name = "item3" }
             };
             Expression<Func<IRepo<IDbContext, AnyItem>, IRepo<IDbContext, AnyItem>>> callPattern
                     =  (repo)=>repo
@@ -51,13 +53,23 @@ namespace SampleReview.BusinessDriver.Features.Tests {
                 new AnalyzedItem { Id = 2, Name = "page1" },new AnalyzedItem { Id = 5, Name = "item3" },
                 new AnalyzedItem { Id = 3, Name = "page1" },new AnalyzedItem { Id = 6, Name = "item3" }
             };
-            Expression<Func<IRepo<IDbContext, AnyItem>, IRepo<IDbContext, AnyItem>>> callPattern
-                    =  (repo)=>repo.Query<AnyItem>(null, null, 1, 10, It.Is<string>(x=>true));
-                                //.Query(1, 10, It.Is<string>(x=>true));
-            mockRepo.Setup(callPattern).Returns(mockRepo.Object).Verifiable();
-            mockRepo.Setup(repo=>repo.Result()).Returns(mockResult);
-            itemCatalog.All(1,10, new string[] { "id" });
-            mockRepo.Verify(callPattern, Times.Once);
+            Expression<Func<IRepo<IDbContext, AnalyzedItem>, IRepo<IDbContext, AnalyzedItem>>> queryCallSignature
+                = (repo) => repo.Query(1, 3, "id");
+
+            mockRepo.Setup(repo => repo.ToRepo<AnalyzedItem>()).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
+            mockAnalyzedItemsRepo.Setup(queryCallSignature).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
+            mockAnalyzedItemsRepo.Setup(repo=>repo.Result()).Returns(mockResult).Verifiable();
+            mockAnalyzedItemsRepo.SetupGet(repo => repo.Details).Returns(new QueryDetails
+            {
+                TotalRecords = 6,
+                RecordsReturned = 3
+            }).Verifiable();
+
+            var page = itemCatalog.All(1,3, new string[] { "id" });
+            mockRepo.Verify(repo => repo.ToRepo<AnalyzedItem>(), Times.Once);
+            mockAnalyzedItemsRepo.Verify(queryCallSignature, Times.Once);
+            mockAnalyzedItemsRepo.Verify(repo => repo.Result(), Times.Once);
+            mockAnalyzedItemsRepo.Verify(repo => repo.Details, Times.Once);
         }
 
         [TestMethod()]
