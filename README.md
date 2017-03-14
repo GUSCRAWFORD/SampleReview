@@ -1,5 +1,5 @@
 # SampleReview
-A sample Single-Page Application build on .NET, C#, EF, T-Sql, WebAPI, Angular 1.5, with a NodeJs dev pipeline
+A sample Single-Page Application built on .NET, C#, EF, T-Sql, WebAPI, Angular 1.5, with a NodeJs dev pipeline
 An end-to-end practical example illustrating the different platforms and patterns I'm experienced with.
 
 # Getting Started
