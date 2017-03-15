@@ -13,6 +13,7 @@ namespace SampleReview.BusinessDriver.Features {
         }
 
         protected IRepo<IDbContext, Data.Domain.Review> reviewRepo;
+
         public Page<Review> All(int item, int page, int perPage, string[] orderBy) {
             var results = reviewRepo
                             .Query(rvw=>rvw.Reviewing == item, page, perPage, orderBy)
@@ -32,6 +33,8 @@ namespace SampleReview.BusinessDriver.Features {
 
         public void Save(Review review) {
             review.Date = DateTime.Now.ToUniversalTime();
+            Business.Rules.Reviews.HaveValidRating(review);
+            Business.Rules.Reviews.HaveCommentWithMinLen(review);
             reviewRepo
                 .Upsert(ToDomainModel<Data.Domain.Review, Review>(review));
             context.SaveChanges();

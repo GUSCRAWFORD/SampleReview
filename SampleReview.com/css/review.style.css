@@ -44,6 +44,9 @@ body {
   margin-left: 6pt;
   padding: 4pt; }
 
+.organizer {
+  vertical-align: middle; }
+
 [loading-spinner], .loading-spinner {
   font-size: 96pt;
   -webkit-animation-name: spin;

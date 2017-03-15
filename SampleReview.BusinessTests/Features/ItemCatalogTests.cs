@@ -18,6 +18,7 @@ namespace SampleReview.BusinessDriver.Features.Tests {
         Mock<IDbContextFactory> mockContextFactory;
         Mock<IDbContext> mockContext;
         Mock<IRepo<IDbContext, AnyItem>> mockRepo;
+        Mock<IRepo<IDbContext, Item>> mockItemsRepo;
         Mock<IRepo<IDbContext, AnalyzedItem>> mockAnalyzedItemsRepo;
         IItemCatalog itemCatalog;
         
@@ -28,25 +29,11 @@ namespace SampleReview.BusinessDriver.Features.Tests {
             mockContextFactory.Setup(fac=>fac.Instance).Returns(mockContext.Object);
             mockRepo = new Mock<IRepo<IDbContext, AnyItem>>();
             mockAnalyzedItemsRepo = new Mock<IRepo<IDbContext, AnalyzedItem>>();
+            mockItemsRepo = new Mock<IRepo<IDbContext, Item>>();
             itemCatalog = new ItemCatalog(mockContextFactory.Object, mockRepo.Object);
         }
 
         [TestMethod]
-        public void ItemCatalogTest() {
-            var mockResult = new List<AnalyzedItem> {
-                new AnalyzedItem { Id = 1, Name = "item" }, new AnalyzedItem { Id = 4, Name = "page1" },
-                new AnalyzedItem { Id = 2, Name = "page1" },new AnalyzedItem { Id = 5, Name = "item3" },
-                new AnalyzedItem { Id = 3, Name = "page1" },new AnalyzedItem { Id = 6, Name = "item3" }
-            };
-            Expression<Func<IRepo<IDbContext, AnyItem>, IRepo<IDbContext, AnyItem>>> callPattern
-                    =  (repo)=>repo
-                                .Query(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>());
-            mockRepo.Setup(callPattern).Returns(mockRepo.Object).Verifiable();
-            mockRepo.Setup(repo=>repo.Result()).Returns(mockResult);
-            mockRepo.Verify(callPattern, Times.Once);
-        }
-
-        [TestMethod()]
         public void AllTest() {
             var mockResult = new List<AnalyzedItem> {
                 new AnalyzedItem { Id = 1, Name = "item" }, new AnalyzedItem { Id = 4, Name = "page1" },
@@ -72,19 +59,45 @@ namespace SampleReview.BusinessDriver.Features.Tests {
             mockAnalyzedItemsRepo.Verify(repo => repo.Details, Times.Once);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ByIdTest() {
-            Assert.Fail();
+            var expected = new AnalyzedItem { Id = 5, Name = "item3" };
+            Expression<Func<IRepo<IDbContext, AnalyzedItem>, AnalyzedItem>> queryCallSignature
+                = (repo) => repo.Find(1);
+
+            mockRepo.Setup(repo => repo.ToRepo<AnalyzedItem>()).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
+            mockAnalyzedItemsRepo.Setup(queryCallSignature).Returns(expected).Verifiable();
+
+            var actual = itemCatalog.ById(1);
+            mockRepo.Verify(repo => repo.ToRepo<AnalyzedItem>(), Times.Once);
+            mockAnalyzedItemsRepo.Verify(queryCallSignature, Times.Once);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ByNameTest() {
-            Assert.Fail();
+            var expected = new AnalyzedItem { Id = 1, Name = "item" };
+            var mockResult = new List<AnalyzedItem> { expected };
+
+            Expression<Func<IRepo<IDbContext, AnalyzedItem>, IRepo<IDbContext, AnalyzedItem>>> queryCallSignature
+                = (repo) => repo.Query(It.IsAny<Expression<Func<AnalyzedItem, bool>>>(), 0, 0);
+
+            mockRepo.Setup(repo => repo.ToRepo<AnalyzedItem>()).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
+            mockAnalyzedItemsRepo.Setup(queryCallSignature).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
+            mockAnalyzedItemsRepo.Setup(repo => repo.Result()).Returns(mockResult).Verifiable();
+
+            var page = itemCatalog.ByName("item");
+            mockRepo.Verify(repo => repo.ToRepo<AnalyzedItem>(), Times.Once);
+            mockAnalyzedItemsRepo.Verify(queryCallSignature, Times.Once);
+            mockAnalyzedItemsRepo.Verify(repo => repo.Result(), Times.Once);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void SaveTest() {
-            Assert.Fail();
+            mockRepo.Setup(repo => repo.ToRepo<Item>()).Returns(mockItemsRepo.Object).Verifiable();
+            mockItemsRepo.Setup(items => items.Upsert(It.IsAny<Item>())).Verifiable();
+            itemCatalog.Save(new Business.Models.Item {});
+            mockRepo.Verify(repo => repo.ToRepo<Item>(), Times.Once);
+            mockItemsRepo.Verify(items => items.Upsert(It.IsAny<Item>()), Times.Once);
         }
     }
 }
