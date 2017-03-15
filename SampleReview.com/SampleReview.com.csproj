@@ -72,6 +72,7 @@
     <Content Include="ux\review\review.scss" />
     <Content Include="ux\review.style.scss" />
     <Content Include="package.json" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

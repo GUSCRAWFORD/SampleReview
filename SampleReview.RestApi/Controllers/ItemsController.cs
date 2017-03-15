@@ -18,13 +18,15 @@ namespace SampleReview.RestApi.Controllers
         // GET: api/Items?page=1&perPage=10&orderBy
         public Page<Item> Get(int page=0, int perPage=0, string orderBy = "")
         {
-            return itemCatalog.All(page, perPage, orderBy.Split(','));
+            using (contextFactory.Instance)
+                return itemCatalog.All(page, perPage, orderBy.Split(','));
         }
 
         // GET: api/Items/5
         public Item Get(int id)
         {
-            return itemCatalog.ById(id);
+            using (contextFactory.Instance)
+                return itemCatalog.ById(id);
         }
 
         // POST: api/Items

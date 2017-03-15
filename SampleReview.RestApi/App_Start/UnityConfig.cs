@@ -22,12 +22,11 @@ namespace SampleReview.RestApi
             
             // e.g. container.RegisterType<ITestService, TestService>();
             //  container.LoadConfiguration(); // Move type mappings to transormable config
-            ContextFactory dbContextFactory = new ContextFactory();
-            container.RegisterInstance<IDbContextFactory>(dbContextFactory);
-            container.RegisterType<IItemCatalog, ItemCatalog>();
-            container.RegisterType<IReviewManager, ReviewManager>();
-            container.RegisterType<IRepo<IDbContext, AnyItem>,Repo<IDbContext, AnyItem>>();
-            container.RegisterType<IRepo<IDbContext, Review>,Repo<IDbContext, Review>>();
+            container.RegisterType<IDbContextFactory, ContextFactory>(new PerThreadLifetimeManager());
+            container.RegisterType<IItemCatalog, ItemCatalog>(new PerThreadLifetimeManager());
+            container.RegisterType<IReviewManager, ReviewManager>(new PerThreadLifetimeManager());
+            container.RegisterType<IRepo<IDbContext, AnyItem>,Repo<IDbContext, AnyItem>>(new PerThreadLifetimeManager());
+            container.RegisterType<IRepo<IDbContext, Review>,Repo<IDbContext, Review>>(new PerThreadLifetimeManager());
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
