@@ -8,7 +8,7 @@ using System.Web.Http.Cors;
 
 namespace SampleReview.RestApi.Controllers
 {
-    [EnableCors(origins: "http://localhost:54672", headers: "*", methods: "*")]
+    
     public class ReviewsController : AnyController
     {
         public ReviewsController(IDbContextFactory contextFactory, IReviewManager reviewManager) : base (contextFactory) {

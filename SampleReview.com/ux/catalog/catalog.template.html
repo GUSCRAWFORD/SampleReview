@@ -25,13 +25,13 @@
         <div ng-if="$ctrl.failed" class="inline-block">
             <span class="fa fa-lg fa-ban text-danger" aria-hidden="true"></span> Loading failed <a ng-click="$ctrl.refresh()">Try again</a>
         </div>
-        <div class="inline-block pull-right">
+        <div class="inline-block">
             <order-ui id="Items" order="$ctrl.orderItems"
                       update="$ctrl.refresh()"
                       disabled="$ctrl.busy"></order-ui>
         </div>
     </div>
-    <div class="result-list">
+    <div class="result-list col-lg-12">
         <div ng-if="!$ctrl.busy"
              ng-repeat="item in $ctrl.items"
              class="col-md-6">
@@ -41,7 +41,7 @@
             </div>
 
             <div class="inline-block">
-                <h4><a href="/#!/review/{{item.id}}">{{ item.name }}</a></h4>
+                <h4><a href="#!/review/{{item.id}}">{{ item.name }}</a></h4>
                 <p>
                     <div uib-rating ng-model="item.averageRating"
                          max="$ctrl.constraints.maxRating"

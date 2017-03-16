@@ -8,7 +8,7 @@ using System.Web.Http.Cors;
 
 namespace SampleReview.RestApi.Controllers
 {
-    [EnableCors(origins: "http://localhost:54672", headers: "*", methods: "*")]
+    
     public class ItemsController : AnyController
     {
         public ItemsController(IDbContextFactory contextFactory, ItemCatalog itemCatalog) : base (contextFactory) {
@@ -18,15 +18,13 @@ namespace SampleReview.RestApi.Controllers
         // GET: api/Items?page=1&perPage=10&orderBy
         public Page<Item> Get(int page=0, int perPage=0, string orderBy = "")
         {
-            using (contextFactory.Instance)
-                return itemCatalog.All(page, perPage, orderBy.Split(','));
+            return itemCatalog.All(page, perPage, orderBy.Split(','));
         }
 
         // GET: api/Items/5
         public Item Get(int id)
         {
-            using (contextFactory.Instance)
-                return itemCatalog.ById(id);
+            return itemCatalog.ById(id);
         }
 
         // POST: api/Items

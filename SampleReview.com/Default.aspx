@@ -29,10 +29,6 @@
             <h1><i class="vso-icon" aria-hidden="true"></i> Gus + TFS</h1>
             <p class="lead">See how Gus uses TFS tasks and storyboarding to manage projects and deliver in a team.</p>
             <p>
-                <a class="btn btn-lg btn-success" href="https://guscrawford.visualstudio.com/SampleReview/" target="_blank" role="button">
-                    <i class="fa fa-sign-in" aria-hidden="true"></i> Join SmithReview <small>guscrawford.visualstudio.com/SampleReview</small></a>
-            </p>
-            <p>
                 <a class="btn btn-sm btn-primary" href="mailto:crawford.gus@gmail.com?subject=Requesting%20Access%20To%20SmithReview" target="_blank" role="button">
                     <i class="fa fa-comment" aria-hidden="true"></i> Request Access to TFS Portal</a>
                 <a class="btn btn-sm btn-default" href="https://github.com/GUSCRAWFORD/SmithReview" target="_blank" role="button">
