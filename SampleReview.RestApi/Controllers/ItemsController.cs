@@ -11,7 +11,7 @@ namespace SampleReview.RestApi.Controllers
     
     public class ItemsController : AnyController
     {
-        public ItemsController(IDbContextFactory contextFactory, ItemCatalog itemCatalog) : base (contextFactory) {
+        public ItemsController(IDbContext context, ItemCatalog itemCatalog) : base (context) {
             this.itemCatalog = itemCatalog;
         }
         protected IItemCatalog itemCatalog;

@@ -22,7 +22,7 @@ namespace SampleReview.RestApi
             
             // e.g. container.RegisterType<ITestService, TestService>();
             //  container.LoadConfiguration(); // Move type mappings to transormable config
-            container.RegisterType<IDbContextFactory, ContextFactory>(new PerThreadLifetimeManager());
+            container.RegisterType<IDbContext, ReviewContext>(new PerThreadLifetimeManager());
             container.RegisterType<IItemCatalog, ItemCatalog>();
             container.RegisterType<IReviewManager, ReviewManager>();
             container.RegisterType<IRepo<IDbContext, AnyItem>,Repo<IDbContext, AnyItem>>();

@@ -4,8 +4,8 @@ using SampleReview.Data.Context;
 namespace SampleReview.BusinessDriver.Features {
     public abstract class Feature {
         protected IDbContext context;
-        public Feature(IDbContextFactory contextFactory) {
-            context = contextFactory.Instance;
+        public Feature(IDbContext context) {
+            this.context = context;
         }
 
         private TModelB ToModel<TModelB, TModelA>(TModelA a) where TModelB : new() {

@@ -10,13 +10,12 @@ namespace SampleReview.Data.Repo {
     public class Repo<TContext, TDomain> : IRepo<TContext, TDomain>
             where TDomain : AnyDomainModel
             where TContext : IDbContext {
-        public Repo(IDbContextFactory contextFactory) {
-            context = (TContext) contextFactory.Instance;
-            this.contextFactory = contextFactory;
+        public Repo(TContext context) {
+            this.context = context;
+            this.context = context;
             dbSet = context.Set<TDomain>();
         }
 
-        protected IDbContextFactory contextFactory;
         protected TContext context;
         protected DbSet<TDomain> dbSet;
         protected IQueryable<TDomain> query;
@@ -100,7 +99,7 @@ namespace SampleReview.Data.Repo {
         }
 
         public IRepo<TContext, TDomainChild> ToRepo<TDomainChild>() where TDomainChild : TDomain {
-            return new Repo<TContext, TDomainChild>(contextFactory);
+            return new Repo<TContext, TDomainChild>(context);
         }
         public virtual TDomain Find(params object[] keyValues) {
             return dbSet.Find(keyValues);

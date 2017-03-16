@@ -53,7 +53,6 @@
   <ItemGroup>
     <Compile Include="Domain\DominModelExtensions.cs" />
     <Compile Include="Context\IDbContext.cs" />
-    <Compile Include="Context\IDbContextFactory.cs" />
     <Compile Include="Context\Extensions.cs" />
     <Compile Include="Domain\Item\AnalyzedItem.cs" />
     <Compile Include="Domain\AnyDomainModel.cs" />

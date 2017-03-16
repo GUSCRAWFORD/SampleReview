@@ -6,10 +6,10 @@ namespace SampleReview.RestApi.Controllers
 {
     public abstract class AnyController : ApiController
     {
-        public AnyController (IDbContextFactory contextFactory) {
-            this.contextFactory = contextFactory;
+        public AnyController (IDbContext context) {
+            this.context = context;
         }
-        protected IDbContextFactory contextFactory;
+        protected IDbContext context;
 
     }
 }

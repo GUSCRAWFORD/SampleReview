@@ -8,7 +8,7 @@ using SampleReview.Data.Domain;
 
 namespace SampleReview.BusinessDriver.Features {
     public class ItemCatalog : Feature, IItemCatalog {
-        public ItemCatalog(IDbContextFactory contextFactory, IRepo<IDbContext, AnyItem> itemRepo) : base(contextFactory) {            
+        public ItemCatalog(IDbContext context, IRepo<IDbContext, AnyItem> itemRepo) : base(context) {            
             this.itemRepo = itemRepo;
             random = new Random();
         }

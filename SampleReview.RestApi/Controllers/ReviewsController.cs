@@ -11,7 +11,7 @@ namespace SampleReview.RestApi.Controllers
     
     public class ReviewsController : AnyController
     {
-        public ReviewsController(IDbContextFactory contextFactory, IReviewManager reviewManager) : base (contextFactory) {
+        public ReviewsController(IDbContext context, IReviewManager reviewManager) : base (context) {
             this.reviewManager = reviewManager;
         }
         protected IReviewManager reviewManager;

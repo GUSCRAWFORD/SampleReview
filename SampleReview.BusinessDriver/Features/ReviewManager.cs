@@ -8,7 +8,7 @@ using System;
 
 namespace SampleReview.BusinessDriver.Features {
     public class ReviewManager : Feature, IReviewManager {
-        public ReviewManager (IDbContextFactory contextFactory, IRepo<IDbContext, Data.Domain.Review> reviewRepo) : base(contextFactory) {            
+        public ReviewManager (IDbContext context, IRepo<IDbContext, Data.Domain.Review> reviewRepo) : base(context) {            
             this.reviewRepo = reviewRepo;
         }
 

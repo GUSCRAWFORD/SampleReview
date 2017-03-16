@@ -10,17 +10,14 @@ using System.Linq;
 namespace SampleReview.Data.Repo.Tests {
     [TestClass]
     public class RepoTests {
-        Mock<IDbContextFactory> mockFactory;
         Mock<IDbContext> mockContext;
         IRepo<IDbContext, Item> repo;
         Mock<DbSet<Item>> mockSet;
 
         [TestInitialize]
         public void RepoTestsInitialize() {
-            mockFactory = new Mock<IDbContextFactory>();
             
             mockContext = new Mock<IDbContext>();
-            mockFactory.SetupGet(x=>x.Instance).Returns(mockContext.Object);
                  
             mockSet = Util.MockDbSet(new List<Item> {
                 new Item { Id = 1, Name = "item" }, new Item { Id = 4, Name = "page1" },
@@ -28,7 +25,7 @@ namespace SampleReview.Data.Repo.Tests {
                 new Item { Id = 3, Name = "page1" },new Item { Id = 6, Name = "item3" }
             });
             mockContext.Setup(ctx=>ctx.Set<Item>()).Returns(mockSet.Object);
-            repo = new Repo<IDbContext, Item>(mockFactory.Object);
+            repo = new Repo<IDbContext, Item>(mockContext.Object);
         }
 
         [TestMethod]

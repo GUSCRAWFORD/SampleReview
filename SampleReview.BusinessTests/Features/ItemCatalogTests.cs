@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 namespace SampleReview.BusinessDriver.Features.Tests {
     [TestClass]
     public class ItemCatalogTests {
-        Mock<IDbContextFactory> mockContextFactory;
         Mock<IDbContext> mockContext;
         Mock<IRepo<IDbContext, AnyItem>> mockRepo;
         Mock<IRepo<IDbContext, Item>> mockItemsRepo;
@@ -24,13 +23,11 @@ namespace SampleReview.BusinessDriver.Features.Tests {
         
         [TestInitialize]
         public void InitializeItemCatalogTests () {
-            mockContextFactory = new Mock<IDbContextFactory>();
             mockContext = new Mock<IDbContext>();
-            mockContextFactory.Setup(fac=>fac.Instance).Returns(mockContext.Object);
             mockRepo = new Mock<IRepo<IDbContext, AnyItem>>();
             mockAnalyzedItemsRepo = new Mock<IRepo<IDbContext, AnalyzedItem>>();
             mockItemsRepo = new Mock<IRepo<IDbContext, Item>>();
-            itemCatalog = new ItemCatalog(mockContextFactory.Object, mockRepo.Object);
+            itemCatalog = new ItemCatalog(mockContext.Object, mockRepo.Object);
         }
 
         [TestMethod]
