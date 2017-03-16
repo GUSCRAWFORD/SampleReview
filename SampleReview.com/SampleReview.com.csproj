@@ -66,12 +66,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\review.style.css" />
+    <Content Include="js\ui.review.js" />
     <Content Include="packages.config" />
     <Content Include="ux\catalog\catalog.scss" />
     <Content Include="ux\loading-spinner.scss" />
     <Content Include="ux\review\review.scss" />
     <Content Include="ux\review.style.scss" />
     <Content Include="package.json" />
+    <Content Include="css\review.style.css.map" />
+    <Content Include="js\ui.review.js.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

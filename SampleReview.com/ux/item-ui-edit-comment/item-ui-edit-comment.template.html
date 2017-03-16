@@ -1,0 +1,17 @@
+<div>
+        <textarea ng-model="$ctrl.alteredModel.comment"
+                  class="form-control"
+                  placeholder="Comment"
+                  name="commentField"
+                  ng-required="true"
+                  ng-minlength="$ctrl.constraints.minCommentLength"></textarea>
+        <div class="text-right">
+            <div class="text-danger" ng-if="$ctrl.invalidBlock && $ctrl.form.$invalid">
+                <span ng-if="$ctrl.form.commentField.$error.required">A comment is required</span>
+                <span ng-if="$ctrl.form.commentField.$error.minlength">An insightful comment is required</span>
+            </div>
+            <button ng-click="$ctrl.onDiscard({})" class="btn btn-default">Cancel</button>
+            <button ng-click="$ctrl.onSave({promise:$ctrl.saveEdit()})"
+                    ng-disabled="$ctrl.invalidBlock && $ctrl.form.$invalid" class="btn btn-primary">Save</button>
+        </div>
+</div>

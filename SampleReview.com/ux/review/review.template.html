@@ -9,61 +9,42 @@
     "Lowest":5
 }
 -->
-<div class="row marketing rounded-border">
-    <div class="col-lg-12 form-horizontal">
-        <div class="inline-block item-icon">
-            <span class="fa fa-{{$ctrl.item.icon}}" ng-style="{color:item.color}" aria-hidden="true"></span>
-        </div>
-
-        <div class="inline-block">
-            <h4>{{ $ctrl.item.name }}</h4>
-            <p>
-                <div ng-show="$ctrl.editing"
-                     name="ratingField"
-                     uib-rating ng-model="$ctrl.editing.rating"
-                     max="$ctrl.constraints.maxRating"
-                     min="$ctrl.constraints.minRating"
-                     aria-labelledby="default-rating"></div>
-
-                <div ng-show="$ctrl.item&&!$ctrl.editing"
-                     uib-rating ng-model="$ctrl.item.averageRating"
-                     max="$ctrl.constraints.maxRating"
-                     aria-labelledby="default-rating"
-                     ng-change="$ctrl.edit($ctrl.item.averageRating)"></div>
-                <div class="text-muted">{{ $ctrl.item.date | date: "MMMM d, yyyy" }}, {{$ctrl.item.reviewCount}} Review{{$ctrl.item.reviewCount > 1?'s':''}}</div>
-            </p>
-        </div>
-    </div>
-    <div ng-if="$ctrl.editing">
-        <textarea ng-model="$ctrl.editing.comment"
-                  class="form-control"
-                  placeholder="Comment"
-                  name="commentField"
-                   ng-required="true"
-                   ng-minlength="$ctrl.constraints.minCommentLength"></textarea>
-        <div class="text-right">
-            <div class="text-danger" ng-if="$ctrl.invalidBlock && $ctrl.form.$invalid">
-                <span ng-if="$ctrl.form.commentField.$error.required">A comment is required</span>
-                <span ng-if="$ctrl.form.commentField.$error.minlength">An insightful comment is required</span>
+<div class="row marketing">
+    <form name="itemReviewForm">
+        <div class="col-lg-12 form-horizontal">
+            <div class="inline-block item-icon">
+                <span class="fa fa-{{$ctrl.item.icon}}" ng-style="{color:item.color}" aria-hidden="true"></span>
             </div>
-            <button ng-click="$ctrl.discardEdit()" class="btn btn-default">Cancel</button>
-            <button ng-click="$ctrl.saveEdit()"
-               ng-disabled="$ctrl.invalidBlock && $ctrl.form.$invalid" class="btn btn-primary">Save</button>
+
+            <div class="inline-block">
+                <h4>{{ $ctrl.item.name }}</h4>
+                <p>
+                    <item-ui item-model="$ctrl.item"
+                            review-model="$ctrl.editing"
+                            change="$ctrl.edit(rating)"></item-ui>
+                    <div class="text-muted">{{ $ctrl.item.date | date: "MMMM d, yyyy" }}, {{$ctrl.item.reviewCount}} Review{{$ctrl.item.reviewCount > 1?'s':''}}</div>
+                </p>
+            </div>
         </div>
-    </div>
+        
+        <item-ui-edit-comment ng-if="$ctrl.editing" altered-model="$ctrl.editing"
+                              on-save="$ctrl.saveEdit(promise)"
+                              on-discard="$ctrl.discardEdit()"
+                              form="itemReviewForm"></item-ui-edit-comment>
+    </form>
     <hr>
    <!--
        
 {"Id":2,"Rating":5,"Comment":"Awesome!"}   
     -->
-    <div class="col-lg-12 organizer">
+    <div class="col-lg-12 organizer clearfix">
         <div class="inline-block">
             <ul uib-pagination ng-change="$ctrl.refresh()"
                 items-per-page="$ctrl.orderReview.perPage"
                 total-items="$ctrl.orderReview.totalItems"
                 ng-model="$ctrl.orderReview.page"
                 ng-hide="$ctrl.busy || $ctrl.orderReview.totalItems < $ctrl.orderReview.perPage"
-                max-size="10" class="pagination" boundary-links="true" rotate="false"
+                max-size="10" class="pagination" boundary-links="true" rotate="false" direction-links="false"
                 previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
         </div>
         <div ng-if="$ctrl.busy" class="inline-block">
@@ -85,10 +66,8 @@
              ng-repeat="review in $ctrl.reviews">
             <span>{{ review.comment }}</span>
             <p>
-                <div uib-rating ng-model="review.rating"
-                     max="$ctrl.constraints.maxRating"
-                     readonly="true"
-                     aria-labelledby="default-rating"></div>
+                <item-ui review-model="review"
+                        read-only="true"></item-ui>
                 <div class="text-muted">{{ review.date | date: "MMMM d, yyyy" }}</div>
             </p>
         </div>

@@ -8,7 +8,7 @@ using System.Web.Http.Cors;
 
 namespace SampleReview.RestApi.Controllers
 {
-    
+    [EnableCors(origins: "http://localhost:54672,http://guscrawford.com", headers: "*", methods: "*")]
     public class ItemsController : AnyController
     {
         public ItemsController(IDbContext context, ItemCatalog itemCatalog) : base (context) {

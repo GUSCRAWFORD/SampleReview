@@ -4,13 +4,12 @@ angular.module('ui.review')
 		template: require('./review.template.html'),
 		controller: reviewController,
 		bindings: {
-			item: '<',
-			form:'<'
+			item: '<'
 		}
 	})
 	.config(function ($routeProvider) {
 		$routeProvider.when('/review/:itemId', {
-			template: '<form name="itemReviewForm"><review item="$resolve.item" form="itemReviewForm"></review></form>',
+			template: '<review item="$resolve.item"></review>',
 			resolve: {
 				item:function (itemResource, $route) {
 					return itemResource.get({ id: $route.current.params.itemId }).$promise;
@@ -42,6 +41,19 @@ function reviewController($scope, reviewResource, itemResource, constraints, $q)
 		perPage: constraints.defaultPerPage,
 		totalItems: 0
 	};
+	function saveEdit (promise) {
+		if (promise) {
+			ctrl.busy = true;
+			ctrl.busyMessage = "Saving your review...";
+			ctrl.failed = false;
+			return promise.then(function () {
+				ctrl.busy = ctrl.busyMessage = false;
+				ctrl.item.AverageRating = ctrl.defaultRating;
+				ctrl.refresh(true);
+				ctrl.editing = null;
+			}, function () { ctrl.busy = !(ctrl.failed = true); });
+		}
+	}
 	function edit(val) {
 		ctrl.editing = {
 			rating: val,
@@ -49,32 +61,15 @@ function reviewController($scope, reviewResource, itemResource, constraints, $q)
 			reviewing: ctrl.item.id
 		};
 	}
-	function discardEdit() {
-		ctrl.editing = null;
-		ctrl.item.AverageRating = ctrl.defaultRating;
-	}
-	function saveEdit() {
-		if (ctrl.form.$valid) {
-			ctrl.invalidBlock = false;
-			ctrl.busy = true;
-			ctrl.busyMessage = "Saving your review...";
-			ctrl.failed = false;
-			return reviewResource.save(ctrl.editing).$promise.then(function () {
-				ctrl.busy = ctrl.busyMessage = false;
-				ctrl.item.AverageRating = ctrl.defaultRating;
-				ctrl.refresh(true);
-				ctrl.editing = null;
-			}, function () { ctrl.busy = !(ctrl.failed = true); });
-		}
-		else {
-			ctrl.invalidBlock = true;
-		}
-	}
+
 	function onInit() {
-		ctrl.defaultRating = ctrl.item.AverageRating;
+		ctrl.defaultRating = ctrl.item.averageRating;
 		ctrl.refresh();
 	}
-
+	function discardEdit() {
+		ctrl.editing = null;
+		ctrl.item.averageRating = ctrl.defaultRating;
+	}
 	function refresh(itemToo) {
 		ctrl.failed = false;
 		var promises = {};

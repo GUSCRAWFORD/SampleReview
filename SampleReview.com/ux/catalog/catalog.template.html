@@ -9,11 +9,12 @@
     "Lowest":5
 }
 -->
-<div class="row marketing rounded-border">
+<div class="row marketing">
 
-    <div class="col-lg-12 organizer">
+    <div class="col-lg-12 organizer clearfix">
         <div class="inline-block">
             <ul uib-pagination items-per-page="$ctrl.orderItems.perPage"
+                direction-links="false"
                 ng-change="$ctrl.refresh()"
                 ng-hide="$ctrl.busy || $ctrl.orderItems.totalItems < $ctrl.orderItems.perPage"
                 total-items="$ctrl.orderItems.totalItems"
@@ -25,7 +26,7 @@
         <div ng-if="$ctrl.failed" class="inline-block">
             <span class="fa fa-lg fa-ban text-danger" aria-hidden="true"></span> Loading failed <a ng-click="$ctrl.refresh()">Try again</a>
         </div>
-        <div class="inline-block">
+        <div class="inline-block pull-right">
             <order-ui id="Items" order="$ctrl.orderItems"
                       update="$ctrl.refresh()"
                       disabled="$ctrl.busy"></order-ui>
@@ -43,10 +44,8 @@
             <div class="inline-block">
                 <h4><a href="#!/review/{{item.id}}">{{ item.name }}</a></h4>
                 <p>
-                    <div uib-rating ng-model="item.averageRating"
-                         max="$ctrl.constraints.maxRating"
-                         readonly="true"
-                         aria-labelledby="default-rating"></div>
+                    <item-ui item-model="item"
+                         read-only="true"></item-ui>
                     <div ng-if="item.date" class="text-muted">{{ item.date | date: "MMMM d, yyyy" }}, {{item.reviewCount}} Review{{item.reviewCount > 1?'s':''}}</div>
                     <div ng-if="!item.date" class="text-muted">No Reviews</div>
                 </p>

@@ -1,0 +1,16 @@
+<div>
+    <div ng-show="$ctrl.reviewModel"
+         name="ratingField"
+         uib-rating ng-model="$ctrl.reviewModel.rating"
+         max="$ctrl.constraints.maxRating"
+         min="$ctrl.constraints.minRating"
+         aria-labelledby="default-rating"
+         readonly="$ctrl.readOnly"></div>
+
+    <div ng-show="$ctrl.itemModel && !$ctrl.reviewModel"
+         uib-rating ng-model="$ctrl.itemModel.averageRating"
+         max="$ctrl.constraints.maxRating"
+         aria-labelledby="default-rating"
+         ng-change="$ctrl.change({rating:$ctrl.itemModel.averageRating})"
+         readonly="$ctrl.readOnly"></div>
+</div>
