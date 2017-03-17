@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
+
 namespace SampleReview.Business.Exceptions
 {
-    public class ReviewException : Exception
+    public class ReviewException : Exception, ISerializable
     {
         public ReviewException(string msg) : base(msg) { }
 

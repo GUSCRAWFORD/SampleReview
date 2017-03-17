@@ -1,7 +1,6 @@
 @import url(../node_modules/bootstrap/dist/css/bootstrap.css);
 @import url(../node_modules/bootstrap/dist/css/bootstrap-theme.css);
 body {
-  margin: 10pt;
   user-select: none;
   cursor: default; }
 
@@ -55,14 +54,19 @@ ul.project-details {
   .selectable-text {
     user-select: text; }
 
-.rounded-border {
-  border: 1px solid #ccc;
-  border-radius: 12pt;
-  margin-bottom: 12pt;
-  padding: 4pt; }
-
 .organizer {
-  vertical-align: middle; }
+  background-color: #efefef;
+  padding: 2pt;
+  margin: 1pt;
+  margin-bottom: 12pt;
+  border-radius: 4pt; }
+  .organizer > div {
+    margin-top: 2pt; }
+  .organizer .col-sm-6 {
+    padding: 1pt; }
+
+.jumbotron h1 {
+  margin: 0px; }
 
 [loading-spinner], .loading-spinner {
   font-size: 96pt;

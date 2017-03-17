@@ -24,22 +24,22 @@
 {"Id":2,"Rating":5,"Comment":"Awesome!"}   
     -->
     <div class="col-lg-12 organizer clearfix">
-        <div class="inline-block">
+        <div class="col-sm-6">
             <ul uib-pagination ng-change="$ctrl.refresh()"
                 items-per-page="$ctrl.orderReview.perPage"
                 total-items="$ctrl.orderReview.totalItems"
                 ng-model="$ctrl.orderReview.page"
                 ng-hide="$ctrl.busy || $ctrl.orderReview.totalItems < $ctrl.orderReview.perPage"
-                max-size="2" class="pagination" boundary-links="true" rotate="true" direction-links="false"
+                max-size="7" class="pagination" boundary-links="true" rotate="true" direction-links="false"
                 previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ></ul>
         </div>
-        <div ng-if="$ctrl.busy" class="inline-block">
+        <div ng-if="$ctrl.busy" class="col-sm-6">
             <span class="fa fa-lg fa-spinner loading-spinner" aria-hidden="true"></span> Loading...
         </div>
-        <div ng-if="$ctrl.failed" class="inline-block">
+        <div ng-if="$ctrl.failed" class="col-sm-6">
             <span class="fa fa-lg fa-ban text-danger" aria-hidden="true"></span> Loading failed <a ng-click="$ctrl.refresh()">try again</a>?
         </div>
-        <div class="inline-block pull-right">
+        <div class="col-sm-6 text-right">
             <order-ui id="{{$ctrl.item.id}}"
                       order="$ctrl.orderReview"
                       update="$ctrl.refresh()"
