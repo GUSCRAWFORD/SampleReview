@@ -34,6 +34,7 @@ namespace SampleReview.BusinessDriver.Features {
         public void Save(Review review) {
             review.Date = DateTime.Now.ToUniversalTime();
             Business.Rules.Reviews.HaveValidRating(review);
+            Business.Rules.Reviews.HaveComment(review);
             Business.Rules.Reviews.HaveCommentWithMinLen(review);
             reviewRepo
                 .Upsert(ToDomainModel<Data.Domain.Review, Review>(review));

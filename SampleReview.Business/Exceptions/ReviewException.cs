@@ -9,13 +9,14 @@ namespace SampleReview.Business.Exceptions
         {
             public const string RatingOutOfBounds = "rating '{0}' is not valid (between {1}, {2})";
             public const string CommentTooShort = "comment '{0}' is not long enough (at least {1} chars)";
+            public const string CommentRequired = "comment is required";
         }
     }
 
     public class RatingOutOfBoundsException : ReviewException
     {
         public RatingOutOfBoundsException(int badRating)
-            : base(String.Format(ReviewException.Messages.RatingOutOfBounds,
+            : base(String.Format(Messages.RatingOutOfBounds,
                 badRating,
                 Rules.Reviews.MinRating,
                 Rules.Reviews.MaxRating)
@@ -24,10 +25,16 @@ namespace SampleReview.Business.Exceptions
     public class CommentTooShortException : ReviewException
     {
         public CommentTooShortException(string shortComment)
-            : base(String.Format(ReviewException.Messages.CommentTooShort,
+            : base(String.Format(Messages.CommentTooShort,
                 shortComment,
                 Rules.Reviews.MinCommentLen)
             )
+        { }
+    }
+    public class CommentRequiredException : ReviewException
+    {
+        public CommentRequiredException()
+            : base(Messages.CommentRequired)
         { }
     }
 }

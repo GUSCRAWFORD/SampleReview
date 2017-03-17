@@ -59,15 +59,14 @@ namespace SampleReview.BusinessDriver.Features.Tests {
         [TestMethod]
         public void ByIdTest() {
             var expected = new AnalyzedItem { Id = 5, Name = "item3" };
-            Expression<Func<IRepo<IDbContext, AnalyzedItem>, AnalyzedItem>> queryCallSignature
+            Expression<Func<IRepo<IDbContext, AnalyzedItem>, AnalyzedItem>> findCallSignature
                 = (repo) => repo.Find(1);
-
             mockRepo.Setup(repo => repo.ToRepo<AnalyzedItem>()).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
-            mockAnalyzedItemsRepo.Setup(queryCallSignature).Returns(expected).Verifiable();
+            mockAnalyzedItemsRepo.Setup(findCallSignature).Returns(expected).Verifiable();
 
             var actual = itemCatalog.ById(1);
             mockRepo.Verify(repo => repo.ToRepo<AnalyzedItem>(), Times.Once);
-            mockAnalyzedItemsRepo.Verify(queryCallSignature, Times.Once);
+            mockAnalyzedItemsRepo.Verify(findCallSignature, Times.Once);
         }
 
         [TestMethod]

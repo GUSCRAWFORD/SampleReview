@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using SampleReview.Business.Exceptions;
 using SampleReview.Business.Features;
 using SampleReview.BusinessDriver.Features;
 using SampleReview.Data.Context;
@@ -16,85 +17,93 @@ namespace SampleReview.BusinessDriver.Features.Tests {
     [TestClass]
     public class ReviewManagerTests {
         Mock<IDbContext> mockContext;
-        Mock<IRepo<IDbContext, AnyItem>> mockRepo;
-        Mock<IRepo<IDbContext, Item>> mockItemsRepo;
-        Mock<IRepo<IDbContext, AnalyzedItem>> mockAnalyzedItemsRepo;
-        IItemCatalog itemCatalog;
+        Mock<IRepo<IDbContext, Review>> mockRepo;
+        IReviewManager reviewManager;
         
         [TestInitialize]
         public void InitializeReviewManagerTests () {
             mockContext = new Mock<IDbContext>();
-            mockRepo = new Mock<IRepo<IDbContext, AnyItem>>();
-            mockAnalyzedItemsRepo = new Mock<IRepo<IDbContext, AnalyzedItem>>();
-            mockItemsRepo = new Mock<IRepo<IDbContext, Item>>();
-            itemCatalog = new ItemCatalog(mockContext.Object, mockRepo.Object);
+            mockRepo = new Mock<IRepo<IDbContext, Review>>();
+            reviewManager = new ReviewManager(mockContext.Object, mockRepo.Object);
         }
 
         [TestMethod]
         public void AllTest() {
-            var mockResult = new List<AnalyzedItem> {
-                new AnalyzedItem { Id = 1, Name = "item" }, new AnalyzedItem { Id = 4, Name = "page1" },
-                new AnalyzedItem { Id = 2, Name = "page1" },new AnalyzedItem { Id = 5, Name = "item3" },
-                new AnalyzedItem { Id = 3, Name = "page1" },new AnalyzedItem { Id = 6, Name = "item3" }
+            var mockResult = new List<Review> {
+                new Review { Id = 1, Rating = 5, Reviewing = 1}, new Review { Id = 2, Rating = 4, Reviewing = 1},
+                new Review { Id = 3, Rating = 3, Reviewing = 1}, new Review { Id = 4, Rating = 2, Reviewing = 1},
+                new Review { Id = 5, Rating = 1, Reviewing = 1}, new Review { Id = 6, Rating = 1, Reviewing = 1}
             };
-            Expression<Func<IRepo<IDbContext, AnalyzedItem>, IRepo<IDbContext, AnalyzedItem>>> queryCallSignature
-                = (repo) => repo.Query(1, 3, "id");
+            Expression<Func<IRepo<IDbContext, Review>, IRepo<IDbContext, Review>>> queryCallSignature
+                = (repo) => repo.Query(It.IsAny<Expression<Func<Review, bool>>>(), 1, 3, "rating");
 
-            mockRepo.Setup(repo => repo.ToRepo<AnalyzedItem>()).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
-            mockAnalyzedItemsRepo.Setup(queryCallSignature).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
-            mockAnalyzedItemsRepo.Setup(repo=>repo.Result()).Returns(mockResult).Verifiable();
-            mockAnalyzedItemsRepo.SetupGet(repo => repo.Details).Returns(new QueryDetails
+            mockRepo.Setup(queryCallSignature).Returns(mockRepo.Object).Verifiable();
+            mockRepo.SetupGet(repo => repo.Details).Returns(new QueryDetails
             {
                 TotalRecords = 6,
                 RecordsReturned = 3
             }).Verifiable();
 
-            var page = itemCatalog.All(1,3, new string[] { "id" });
-            mockRepo.Verify(repo => repo.ToRepo<AnalyzedItem>(), Times.Once);
-            mockAnalyzedItemsRepo.Verify(queryCallSignature, Times.Once);
-            mockAnalyzedItemsRepo.Verify(repo => repo.Result(), Times.Once);
-            mockAnalyzedItemsRepo.Verify(repo => repo.Details, Times.Once);
+            var page = reviewManager.All(1, 1, 3, new string[] { "rating" });
+            mockRepo.Verify(queryCallSignature, Times.Once);
+            mockRepo.Verify(repo => repo.Result(), Times.Once);
+            mockRepo.Verify(repo => repo.Details, Times.Once);
         }
 
         [TestMethod]
         public void ByIdTest() {
-            var expected = new AnalyzedItem { Id = 5, Name = "item3" };
-            Expression<Func<IRepo<IDbContext, AnalyzedItem>, AnalyzedItem>> queryCallSignature
+            var expected = new Review { Id = 1, Reviewing = 1,  };
+            Expression<Func<IRepo<IDbContext, Review>, Review>> queryCallSignature
                 = (repo) => repo.Find(1);
 
-            mockRepo.Setup(repo => repo.ToRepo<AnalyzedItem>()).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
-            mockAnalyzedItemsRepo.Setup(queryCallSignature).Returns(expected).Verifiable();
+            mockRepo.Setup(queryCallSignature).Returns(expected).Verifiable();
 
-            var actual = itemCatalog.ById(1);
-            mockRepo.Verify(repo => repo.ToRepo<AnalyzedItem>(), Times.Once);
-            mockAnalyzedItemsRepo.Verify(queryCallSignature, Times.Once);
+            var actual = reviewManager.ById(1);
+            mockRepo.Verify(queryCallSignature, Times.Once);
         }
 
         [TestMethod]
-        public void ByNameTest() {
-            var expected = new AnalyzedItem { Id = 1, Name = "item" };
-            var mockResult = new List<AnalyzedItem> { expected };
-
-            Expression<Func<IRepo<IDbContext, AnalyzedItem>, IRepo<IDbContext, AnalyzedItem>>> queryCallSignature
-                = (repo) => repo.Query(It.IsAny<Expression<Func<AnalyzedItem, bool>>>(), 0, 0);
-
-            mockRepo.Setup(repo => repo.ToRepo<AnalyzedItem>()).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
-            mockAnalyzedItemsRepo.Setup(queryCallSignature).Returns(mockAnalyzedItemsRepo.Object).Verifiable();
-            mockAnalyzedItemsRepo.Setup(repo => repo.Result()).Returns(mockResult).Verifiable();
-
-            var page = itemCatalog.ByName("item");
-            mockRepo.Verify(repo => repo.ToRepo<AnalyzedItem>(), Times.Once);
-            mockAnalyzedItemsRepo.Verify(queryCallSignature, Times.Once);
-            mockAnalyzedItemsRepo.Verify(repo => repo.Result(), Times.Once);
+        [ExpectedException(typeof(RatingOutOfBoundsException))]
+        public void SaveRatingOutOfBoundsExceptionTest() {
+            var expected = new Business.Models.Review { };
+            mockRepo.Setup(revs => revs.Upsert(It.IsAny<Review>())).Verifiable();
+            reviewManager.Save(expected);
         }
-
         [TestMethod]
-        public void SaveTest() {
-            mockRepo.Setup(repo => repo.ToRepo<Item>()).Returns(mockItemsRepo.Object).Verifiable();
-            mockItemsRepo.Setup(items => items.Upsert(It.IsAny<Item>())).Verifiable();
-            itemCatalog.Save(new Business.Models.Item {});
-            mockRepo.Verify(repo => repo.ToRepo<Item>(), Times.Once);
-            mockItemsRepo.Verify(items => items.Upsert(It.IsAny<Item>()), Times.Once);
+        [ExpectedException(typeof(CommentRequiredException))]
+        public void SaveCommentRequiredExceptionTest()
+        {
+            var expected = new Business.Models.Review { Rating = 1 };
+            mockRepo.Setup(revs => revs.Upsert(It.IsAny<Review>())).Verifiable();
+            reviewManager.Save(expected);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(CommentRequiredException))]
+        public void SaveBlankCommentRequiredExceptionTest()
+        {
+            var expected = new Business.Models.Review { Rating = 1 , Comment = "" };
+            mockRepo.Setup(revs => revs.Upsert(It.IsAny<Review>())).Verifiable();
+            mockContext.Setup(ctx => ctx.SaveChanges()).Verifiable();
+            reviewManager.Save(expected);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(CommentTooShortException))]
+        public void SaveCommentTooShortExceptionTest()
+        {
+            var expected = new Business.Models.Review { Rating = 1, Comment = "Umm"};
+            mockRepo.Setup(revs => revs.Upsert(It.IsAny<Review>())).Verifiable();
+            mockContext.Setup(ctx => ctx.SaveChanges()).Verifiable();
+            reviewManager.Save(expected);
+        }
+        [TestMethod]
+        public void SaveTest()
+        {
+            var expected = new Business.Models.Review { Rating = 1, Comment = "Ahhh" };
+            mockRepo.Setup(revs => revs.Upsert(It.IsAny<Review>())).Verifiable();
+            mockContext.Setup(ctx => ctx.SaveChanges()).Verifiable();
+            reviewManager.Save(expected);
+            mockRepo.Verify(revs => revs.Upsert(It.IsAny<Review>()), Times.Once);
+            mockContext.Verify(ctx => ctx.SaveChanges(), Times.Once);
         }
     }
 }

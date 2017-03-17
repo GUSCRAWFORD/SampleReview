@@ -19,5 +19,10 @@ namespace SampleReview.Business.Rules
             if(review.Comment.Length >= MinCommentLen) return true;
             throw new CommentTooShortException(review.Comment);
         }
+        public static bool HaveComment(Review review)
+        {
+            if (review.Comment != null && review.Comment != string.Empty) return true;
+            throw new CommentRequiredException();
+        }
     }
 }
