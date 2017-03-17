@@ -23,10 +23,11 @@ ul.project-details {
   padding-left: 0px; }
   ul.project-details li {
     list-style-type: none;
-    font-size: 16pt; }
+    font-size: 16pt;
+    margin-bottom: 6pt; }
     ul.project-details li ul {
       padding-left: 0pt;
-      margin-bottom: 6pt; }
+      margin-bottom: 12pt; }
       ul.project-details li ul li {
         font-size: 12pt; }
   ul.project-details .fa {
