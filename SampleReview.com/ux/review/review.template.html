@@ -30,8 +30,8 @@
                 total-items="$ctrl.orderReview.totalItems"
                 ng-model="$ctrl.orderReview.page"
                 ng-hide="$ctrl.busy || $ctrl.orderReview.totalItems < $ctrl.orderReview.perPage"
-                max-size="10" class="pagination" boundary-links="true" rotate="false" direction-links="false"
-                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                max-size="2" class="pagination" boundary-links="true" rotate="true" direction-links="false"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ></ul>
         </div>
         <div ng-if="$ctrl.busy" class="inline-block">
             <span class="fa fa-lg fa-spinner loading-spinner" aria-hidden="true"></span> Loading...

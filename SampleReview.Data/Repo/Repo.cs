@@ -102,7 +102,9 @@ namespace SampleReview.Data.Repo {
             return new Repo<TContext, TDomainChild>(context);
         }
         public virtual TDomain Find(params object[] keyValues) {
-            return dbSet.Find(keyValues);
+            var single = dbSet.Find(keyValues);
+            context.Entry(single).Reload();
+            return single;
         }
 
         public IRepo<TContext, TDomain> AsNoTracking() {

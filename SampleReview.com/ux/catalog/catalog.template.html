@@ -18,7 +18,7 @@
                 ng-change="$ctrl.refresh()"
                 ng-hide="$ctrl.busy || $ctrl.orderItems.totalItems < $ctrl.orderItems.perPage"
                 total-items="$ctrl.orderItems.totalItems"
-                ng-model="$ctrl.orderItems.page" max-size="10" class="pagination" boundary-links="true" rotate="false"
+                ng-model="$ctrl.orderItems.page" max-size="2" class="pagination" boundary-links="true" rotate="true"
                 previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul></div>
         <div ng-if="$ctrl.busy" class="inline-block">
             <span class="fa fa-lg fa-spinner loading-spinner" aria-hidden="true"></span> Loading...
