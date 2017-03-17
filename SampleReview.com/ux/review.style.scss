@@ -26,25 +26,20 @@ ul.project-details {
 
     li {
         list-style-type: none;
-        font-size: 12pt;
-        margin-bottom: 3pt;
+        font-size: 16pt;
 
         ul {
             padding-left: 0pt;
-
+            margin-bottom:6pt;
             li {
-                font-size: 11pt;
+                font-size: 12pt;
             }
 
-            .fa {
-                font-size: 16pt;
-                color: #333;
-            }
         }
     }
 
     .fa {
-        color: #999;
+        color: #666;
         font-size: 18pt;
         margin-right: 6pt;
     }
@@ -62,7 +57,7 @@ ul.project-details {
 
 .inline-block-90 {
     @extend .inline-block;
-    max-width:88%;
+    max-width:85%;
 }
 [ng-click] {
     cursor:pointer;

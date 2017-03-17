@@ -23,17 +23,14 @@ ul.project-details {
   padding-left: 0px; }
   ul.project-details li {
     list-style-type: none;
-    font-size: 12pt;
-    margin-bottom: 3pt; }
+    font-size: 16pt; }
     ul.project-details li ul {
-      padding-left: 0pt; }
+      padding-left: 0pt;
+      margin-bottom: 6pt; }
       ul.project-details li ul li {
-        font-size: 11pt; }
-      ul.project-details li ul .fa {
-        font-size: 16pt;
-        color: #333; }
+        font-size: 12pt; }
   ul.project-details .fa {
-    color: #999;
+    color: #666;
     font-size: 18pt;
     margin-right: 6pt; }
 
@@ -46,7 +43,7 @@ ul.project-details {
     vertical-align: text-bottom; }
 
 .inline-block-90 {
-  max-width: 88%; }
+  max-width: 85%; }
 
 [ng-click] {
   cursor: pointer; }
