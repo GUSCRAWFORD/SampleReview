@@ -47,11 +47,10 @@ namespace SampleReview.BusinessDriver.Features {
                 .Upsert(ToDomainModel<Data.Domain.Item, Business.Models.Item>(item));
         }
 
-        protected Business.Models.Item ToViewModel(Data.Domain.AnalyzedItem domain) {
-            
-            var color = String.Format("#{0:X6}", random.Next(0x1000000)); // = "#A197B9"
+        protected Business.Models.Item ToViewModel(AnalyzedItem domain) {
             var viewModel = ToViewModel<Business.Models.Item, AnalyzedItem>(domain);
-            viewModel.Color = color;
+            if (viewModel.Color == null || viewModel.Color == string.Empty)
+                viewModel.Color = String.Format("{0:X6}", random.Next(0x1000000));
             return viewModel;
         }
     }

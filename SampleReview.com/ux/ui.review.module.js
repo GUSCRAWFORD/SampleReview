@@ -11,7 +11,6 @@ angular.element(function () {
 require('./catalog');
 require('./review');
 require('./gus-plus-tfs');
+require('./help');
 
-require('./order-ui');
-require('./item-ui');
-require('./item-ui-edit-comment');
+require('./components');

@@ -13,5 +13,8 @@ namespace SampleReview.Data.Domain {
 
         [StringLength(50)]
         public string Icon { get; set; }
+
+        [StringLength(6)]
+        public string Color { get; set; }
     }
 }

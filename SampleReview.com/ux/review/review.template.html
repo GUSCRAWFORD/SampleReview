@@ -11,21 +11,7 @@
 -->
 <div class="row marketing">
     <form name="itemReviewForm">
-        <div class="col-lg-12 form-horizontal">
-            <div class="inline-block item-icon">
-                <span class="fa fa-{{$ctrl.item.icon}}" ng-style="{color:item.color}" aria-hidden="true"></span>
-            </div>
-
-            <div class="inline-block">
-                <h4>{{ $ctrl.item.name }}</h4>
-                <p>
-                    <item-ui item-model="$ctrl.item"
-                            review-model="$ctrl.editing"
-                            change="$ctrl.edit(rating)"></item-ui>
-                    <div class="text-muted">{{ $ctrl.item.date | date: "MMMM d, yyyy" }}, {{$ctrl.item.reviewCount}} Review{{$ctrl.item.reviewCount > 1?'s':''}}</div>
-                </p>
-            </div>
-        </div>
+        <item item-model="$ctrl.item" review-model="$ctrl.editing" change="$ctrl.edit(rating)"></item>
         
         <item-ui-edit-comment ng-if="$ctrl.editing" altered-model="$ctrl.editing"
                               on-save="$ctrl.saveEdit(promise)"

@@ -37,19 +37,7 @@
              ng-repeat="item in $ctrl.items"
              class="col-md-6">
 
-            <div class="inline-block item-icon">
-                <span class="fa fa-{{item.icon}}" ng-style="{color:item.color}" aria-hidden="true"></span>
-            </div>
-
-            <div class="inline-block">
-                <h4><a href="#!/review/{{item.id}}">{{ item.name }}</a></h4>
-                <p>
-                    <item-ui item-model="item"
-                         read-only="true"></item-ui>
-                    <div ng-if="item.date" class="text-muted">{{ item.date | date: "MMMM d, yyyy" }}, {{item.reviewCount}} Review{{item.reviewCount > 1?'s':''}}</div>
-                    <div ng-if="!item.date" class="text-muted">No Reviews</div>
-                </p>
-            </div>
+        <item item-model="item" read-only="true"></item>
         </div>
     </div>
 </div>

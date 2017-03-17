@@ -1,0 +1,20 @@
+﻿<div>
+    <div class="inline-block item-icon">
+        <span class="fa fa-{{$ctrl.itemModel.icon}}" ng-style="{color:'#'+$ctrl.itemModel.color}" aria-hidden="true"></span>
+    </div>
+
+    <div class="inline-block">
+        <h4 ng-if="!$ctrl.reviewModel">
+            <a href="#!/review/{{$ctrl.itemModel.id}}">{{ $ctrl.itemModel.name }}</a>
+        </h4>
+        <h4 ng-if="$ctrl.reviewModel">{{ $ctrl.itemModel.name }}</h4>
+        <p>
+            <item-ui item-model="$ctrl.itemModel"
+                     read-only="{{$ctrl.readOnly}}"
+                     change="$ctrl.onChange(rating)"
+                     review-model="$ctrl.reviewModel"></item-ui>
+            <div ng-if="$ctrl.itemModel.date" class="text-muted">{{ $ctrl.itemModel.date | date: "MMMM d, yyyy" }}, {{$ctrl.itemModel.reviewCount >= 0 ? $ctrl.itemModel.reviewCount : 'No'}} Review{{$ctrl.itemModel.reviewCount > 1?'s':''}}</div>
+            <div ng-if="!$ctrl.itemModel.date" class="text-muted">No Reviews</div>
+        </p>
+    </div>
+</div>

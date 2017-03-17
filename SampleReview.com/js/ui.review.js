@@ -63,14 +63,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 32);
+/******/ 	return __webpack_require__(__webpack_require__.s = 39);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(19);
+__webpack_require__(18);
 module.exports = angular;
 
 
@@ -79,9 +79,9 @@ module.exports = angular;
 /***/ (function(module, exports, __webpack_require__) {
 
 ﻿var angular = __webpack_require__(0);
-__webpack_require__(17);
+__webpack_require__(16);
 angular.module('app.review', ['ngResource']);
-__webpack_require__(12)
+__webpack_require__(11)
 
 /***/ }),
 /* 2 */
@@ -8595,7 +8595,7 @@ angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCac
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(18);
+__webpack_require__(17);
 module.exports = 'ngRoute';
 
 
@@ -8603,40 +8603,37 @@ module.exports = 'ngRoute';
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-﻿__webpack_require__(26);
+﻿__webpack_require__(27);
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-﻿__webpack_require__(27)
+﻿__webpack_require__(34);
+__webpack_require__(32);
+__webpack_require__(30);
+__webpack_require__(28);
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-﻿__webpack_require__(28);
+﻿__webpack_require__(36)
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-﻿__webpack_require__(29);
+﻿__webpack_require__(37)
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-﻿__webpack_require__(30);
+﻿__webpack_require__(38)
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-﻿__webpack_require__(31)
-
-/***/ }),
-/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ﻿var angular = __webpack_require__(0);
@@ -8651,27 +8648,27 @@ angular.module('app.review').constant('constraints', {
 
 
 /***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+﻿__webpack_require__(9);
+
+/***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-﻿__webpack_require__(10);
+﻿__webpack_require__(12);
+__webpack_require__(10);
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ﻿__webpack_require__(13);
-__webpack_require__(11);
+__webpack_require__(14);
 
 /***/ }),
 /* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-﻿__webpack_require__(14);
-__webpack_require__(15);
-
-/***/ }),
-/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ﻿var angular = __webpack_require__(0);
@@ -8683,7 +8680,7 @@ function itemResource($resource, restEndpoint, constraints) {
 }
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ﻿var angular = __webpack_require__(0);
@@ -8696,7 +8693,7 @@ function reviewResource($resource, restEndpoint, constraints) {
 }
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports) {
 
 /**
@@ -9552,15 +9549,15 @@ angular.module('ngResource', ['ng']).
 
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(16);
+__webpack_require__(15);
 module.exports = 'ngResource';
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports) {
 
 /**
@@ -10795,7 +10792,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /**
@@ -44145,49 +44142,61 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+module.exports = "<!--\r\n{   \r\n    \"Id\":1,\r\n    \"Name\":\"GitHub\",\r\n    \"Icon\":null,\r\n    \"AverageRating\":5,\r\n    \"SampleSize\":1,\r\n    \"Highest\":5,\r\n    \"Lowest\":5\r\n}\r\n-->\r\n<div class=\"row marketing\">\r\n\r\n    <div class=\"col-lg-12 organizer clearfix\">\r\n        <div class=\"inline-block\">\r\n            <ul uib-pagination items-per-page=\"$ctrl.orderItems.perPage\"\r\n                direction-links=\"false\"\r\n                ng-change=\"$ctrl.refresh()\"\r\n                ng-hide=\"$ctrl.busy || $ctrl.orderItems.totalItems < $ctrl.orderItems.perPage\"\r\n                total-items=\"$ctrl.orderItems.totalItems\"\r\n                ng-model=\"$ctrl.orderItems.page\" max-size=\"10\" class=\"pagination\" boundary-links=\"true\" rotate=\"false\"\r\n                previous-text=\"&lsaquo;\" next-text=\"&rsaquo;\" first-text=\"&laquo;\" last-text=\"&raquo;\"></ul></div>\r\n        <div ng-if=\"$ctrl.busy\" class=\"inline-block\">\r\n            <span class=\"fa fa-lg fa-spinner loading-spinner\" aria-hidden=\"true\"></span> Loading...\r\n        </div>\r\n        <div ng-if=\"$ctrl.failed\" class=\"inline-block\">\r\n            <span class=\"fa fa-lg fa-ban text-danger\" aria-hidden=\"true\"></span> Loading failed <a ng-click=\"$ctrl.refresh()\">Try again</a>\r\n        </div>\r\n        <div class=\"inline-block pull-right\">\r\n            <order-ui id=\"Items\" order=\"$ctrl.orderItems\"\r\n                      update=\"$ctrl.refresh()\"\r\n                      disabled=\"$ctrl.busy\"></order-ui>\r\n        </div>\r\n    </div>\r\n    <div class=\"result-list col-lg-12\">\r\n        <div ng-if=\"!$ctrl.busy\"\r\n             ng-repeat=\"item in $ctrl.items\"\r\n             class=\"col-md-6\">\r\n\r\n        <item item-model=\"item\" read-only=\"true\"></item>\r\n        </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
 /* 20 */
-/***/ (function(module, exports) {
-
-module.exports = "<!--\r\n{   \r\n    \"Id\":1,\r\n    \"Name\":\"GitHub\",\r\n    \"Icon\":null,\r\n    \"AverageRating\":5,\r\n    \"SampleSize\":1,\r\n    \"Highest\":5,\r\n    \"Lowest\":5\r\n}\r\n-->\r\n<div class=\"row marketing\">\r\n\r\n    <div class=\"col-lg-12 organizer clearfix\">\r\n        <div class=\"inline-block\">\r\n            <ul uib-pagination items-per-page=\"$ctrl.orderItems.perPage\"\r\n                direction-links=\"false\"\r\n                ng-change=\"$ctrl.refresh()\"\r\n                ng-hide=\"$ctrl.busy || $ctrl.orderItems.totalItems < $ctrl.orderItems.perPage\"\r\n                total-items=\"$ctrl.orderItems.totalItems\"\r\n                ng-model=\"$ctrl.orderItems.page\" max-size=\"10\" class=\"pagination\" boundary-links=\"true\" rotate=\"false\"\r\n                previous-text=\"&lsaquo;\" next-text=\"&rsaquo;\" first-text=\"&laquo;\" last-text=\"&raquo;\"></ul></div>\r\n        <div ng-if=\"$ctrl.busy\" class=\"inline-block\">\r\n            <span class=\"fa fa-lg fa-spinner loading-spinner\" aria-hidden=\"true\"></span> Loading...\r\n        </div>\r\n        <div ng-if=\"$ctrl.failed\" class=\"inline-block\">\r\n            <span class=\"fa fa-lg fa-ban text-danger\" aria-hidden=\"true\"></span> Loading failed <a ng-click=\"$ctrl.refresh()\">Try again</a>\r\n        </div>\r\n        <div class=\"inline-block pull-right\">\r\n            <order-ui id=\"Items\" order=\"$ctrl.orderItems\"\r\n                      update=\"$ctrl.refresh()\"\r\n                      disabled=\"$ctrl.busy\"></order-ui>\r\n        </div>\r\n    </div>\r\n    <div class=\"result-list col-lg-12\">\r\n        <div ng-if=\"!$ctrl.busy\"\r\n             ng-repeat=\"item in $ctrl.items\"\r\n             class=\"col-md-6\">\r\n\r\n            <div class=\"inline-block item-icon\">\r\n                <span class=\"fa fa-{{item.icon}}\" ng-style=\"{color:item.color}\" aria-hidden=\"true\"></span>\r\n            </div>\r\n\r\n            <div class=\"inline-block\">\r\n                <h4><a href=\"#!/review/{{item.id}}\">{{ item.name }}</a></h4>\r\n                <p>\r\n                    <item-ui item-model=\"item\"\r\n                         read-only=\"true\"></item-ui>\r\n                    <div ng-if=\"item.date\" class=\"text-muted\">{{ item.date | date: \"MMMM d, yyyy\" }}, {{item.reviewCount}} Review{{item.reviewCount > 1?'s':''}}</div>\r\n                    <div ng-if=\"!item.date\" class=\"text-muted\">No Reviews</div>\r\n                </p>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"jumbotron\">\r\n    <h1><i class=\"vso-icon\" aria-hidden=\"true\"></i> Gus + TFS</h1>\r\n    <p class=\"lead\">See how Gus uses TFS tasks and storyboarding to manage projects and deliver in a team.</p>\r\n    <p>\r\n        <a class=\"btn btn-sm btn-primary\" href=\"mailto:crawford.gus@gmail.com?subject=Requesting%20Access%20To%20SmithReview\" target=\"_blank\" role=\"button\">\r\n            <i class=\"fa fa-comment\" aria-hidden=\"true\"></i> Request Access to TFS Portal</a>\r\n        <a class=\"btn btn-sm btn-default\" href=\"https://github.com/GUSCRAWFORD/SmithReview\" target=\"_blank\" role=\"button\">\r\n            <i class=\"fa fa-github\" aria-hidden=\"true\"></i> Clone from GitHub</a>\r\n    </p>\r\n    <p class=\"text-muted\">\r\n        Complete source and iteration-backlog available at TFS web-portal<br>\r\n        <small>\r\n            You can clone this source now from <a href=\"https://github.com/GUSCRAWFORD/SmithReview\">GitHub</a>, or send an <a href=\"mailto:crawford.gus@gmail.com?subject=Requesting%20Access%20To%20SmithReview\">email</a> with a Microsoft email to be added to the team.\r\n        </small>\r\n    </p>\r\n</div>";
-
-/***/ }),
-/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = "<div>\r\n        <textarea ng-model=\"$ctrl.alteredModel.comment\"\r\n                  class=\"form-control\"\r\n                  placeholder=\"Comment\"\r\n                  name=\"commentField\"\r\n                  ng-required=\"true\"\r\n                  ng-minlength=\"$ctrl.constraints.minCommentLength\"></textarea>\r\n        <div class=\"text-right\">\r\n            <div class=\"text-danger\" ng-if=\"$ctrl.invalidBlock && $ctrl.form.$invalid\">\r\n                <span ng-if=\"$ctrl.form.commentField.$error.required\">A comment is required</span>\r\n                <span ng-if=\"$ctrl.form.commentField.$error.minlength\">An insightful comment is required</span>\r\n            </div>\r\n            <button ng-click=\"$ctrl.onDiscard({})\" class=\"btn btn-default\">Cancel</button>\r\n            <button ng-click=\"$ctrl.onSave({promise:$ctrl.saveEdit()})\"\r\n                    ng-disabled=\"$ctrl.invalidBlock && $ctrl.form.$invalid\" class=\"btn btn-primary\">Save</button>\r\n        </div>\r\n</div>";
 
 /***/ }),
-/* 23 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = "<div>\r\n    <div ng-show=\"$ctrl.reviewModel\"\r\n         name=\"ratingField\"\r\n         uib-rating ng-model=\"$ctrl.reviewModel.rating\"\r\n         max=\"$ctrl.constraints.maxRating\"\r\n         min=\"$ctrl.constraints.minRating\"\r\n         aria-labelledby=\"default-rating\"\r\n         readonly=\"$ctrl.readOnly\"></div>\r\n\r\n    <div ng-show=\"$ctrl.itemModel && !$ctrl.reviewModel\"\r\n         uib-rating ng-model=\"$ctrl.itemModel.averageRating\"\r\n         max=\"$ctrl.constraints.maxRating\"\r\n         aria-labelledby=\"default-rating\"\r\n         ng-change=\"$ctrl.change({rating:$ctrl.itemModel.averageRating})\"\r\n         readonly=\"$ctrl.readOnly\"></div>\r\n</div>";
 
 /***/ }),
-/* 24 */
+/* 22 */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n    <div class=\"inline-block item-icon\">\r\n        <span class=\"fa fa-{{$ctrl.itemModel.icon}}\" ng-style=\"{color:'#'+$ctrl.itemModel.color}\" aria-hidden=\"true\"></span>\r\n    </div>\r\n\r\n    <div class=\"inline-block\">\r\n        <h4 ng-if=\"!$ctrl.reviewModel\">\r\n            <a href=\"#!/review/{{$ctrl.itemModel.id}}\">{{ $ctrl.itemModel.name }}</a>\r\n        </h4>\r\n        <h4 ng-if=\"$ctrl.reviewModel\">{{ $ctrl.itemModel.name }}</h4>\r\n        <p>\r\n            <item-ui item-model=\"$ctrl.itemModel\"\r\n                     read-only=\"{{$ctrl.readOnly}}\"\r\n                     change=\"$ctrl.onChange(rating)\"\r\n                     review-model=\"$ctrl.reviewModel\"></item-ui>\r\n            <div ng-if=\"$ctrl.itemModel.date\" class=\"text-muted\">{{ $ctrl.itemModel.date | date: \"MMMM d, yyyy\" }}, {{$ctrl.itemModel.reviewCount >= 0 ? $ctrl.itemModel.reviewCount : 'No'}} Review{{$ctrl.itemModel.reviewCount > 1?'s':''}}</div>\r\n            <div ng-if=\"!$ctrl.itemModel.date\" class=\"text-muted\">No Reviews</div>\r\n        </p>\r\n    </div>\r\n</div>";
+
+/***/ }),
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = "<form ng-disabled=\"$ctrl.disabled\">\r\n    <div class=\"btn-group\" uib-dropdown>\r\n        <button id=\"reverse{{$ctrl.id}}\" type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.reverse($ctrl.order.by[0])\">\r\n            <i class=\"fa fa-sort-{{$ctrl.order.options[$ctrl.stripAsc($ctrl.order.by[0])].type}}-{{$ctrl.asc($ctrl.order.by[0])?'asc':'desc'}}\" aria-hidden=\"true\"></i>\r\n        </button>\r\n        <button type=\"button\" class=\"btn btn-default\" uib-dropdown-toggle>\r\n            {{$ctrl.order.options[$ctrl.stripAsc($ctrl.order.by[0])].prefix[($ctrl.asc($ctrl.order.by[0])?'asc':'desc')]}}\r\n            {{$ctrl.order.options[$ctrl.stripAsc($ctrl.order.by[0])].label}}\r\n            <span class=\"caret\"></span>\r\n            <span class=\"sr-only\">Arrange by</span>\r\n        </button>\r\n        <ul class=\"dropdown-menu\" uib-dropdown-menu role=\"menu\" aria-labelledby=\"reverse{{$ctrl.id}}\">\r\n            <li ng-repeat=\"column in $ctrl.order.by\"\r\n                role=\"menuitem\">\r\n                <a ng-click=\"$ctrl.orderBy($ctrl.stripAsc(column))\">\r\n                    {{$ctrl.order.options[$ctrl.stripAsc(column)].prefix[(($ctrl.order.options[$ctrl.stripAsc(column)].defaultAsc=='+')?'asc':'desc')]}}\r\n                    {{$ctrl.order.options[$ctrl.stripAsc(column)].label}}\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</form>";
 
 /***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"jumbotron\">\r\n    <h1><i class=\"vso-icon\" aria-hidden=\"true\"></i> Gus + TFS</h1>\r\n    <p class=\"lead\">See how Gus uses TFS tasks and storyboarding to manage projects and deliver in a team.</p>\r\n    <p>\r\n        <a class=\"btn btn-sm btn-primary\" href=\"mailto:crawford.gus@gmail.com?subject=Requesting%20Access%20To%20SmithReview\" target=\"_blank\" role=\"button\">\r\n            <i class=\"fa fa-comment\" aria-hidden=\"true\"></i> Request Access to TFS Portal</a>\r\n        <a class=\"btn btn-sm btn-default\" href=\"https://github.com/GUSCRAWFORD/SmithReview\" target=\"_blank\" role=\"button\">\r\n            <i class=\"fa fa-github\" aria-hidden=\"true\"></i> Clone from GitHub</a>\r\n    </p>\r\n    <p class=\"text-muted\">\r\n        Complete source and iteration-backlog available at TFS web-portal<br>\r\n        <small>\r\n            You can clone this source now from <a href=\"https://github.com/GUSCRAWFORD/SmithReview\">GitHub</a>, or send an <a href=\"mailto:crawford.gus@gmail.com?subject=Requesting%20Access%20To%20SmithReview\">email</a> with a Microsoft email to be added to the team.\r\n        </small>\r\n    </p>\r\n</div>";
+
+/***/ }),
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = "<!--\r\n{   \r\n    \"Id\":1,\r\n    \"Name\":\"GitHub\",\r\n    \"Icon\":null,\r\n    \"AverageRating\":5,\r\n    \"SampleSize\":1,\r\n    \"Highest\":5,\r\n    \"Lowest\":5\r\n}\r\n-->\r\n<div class=\"row marketing\">\r\n    <form name=\"itemReviewForm\">\r\n        <div class=\"col-lg-12 form-horizontal\">\r\n            <div class=\"inline-block item-icon\">\r\n                <span class=\"fa fa-{{$ctrl.item.icon}}\" ng-style=\"{color:item.color}\" aria-hidden=\"true\"></span>\r\n            </div>\r\n\r\n            <div class=\"inline-block\">\r\n                <h4>{{ $ctrl.item.name }}</h4>\r\n                <p>\r\n                    <item-ui item-model=\"$ctrl.item\"\r\n                            review-model=\"$ctrl.editing\"\r\n                            change=\"$ctrl.edit(rating)\"></item-ui>\r\n                    <div class=\"text-muted\">{{ $ctrl.item.date | date: \"MMMM d, yyyy\" }}, {{$ctrl.item.reviewCount}} Review{{$ctrl.item.reviewCount > 1?'s':''}}</div>\r\n                </p>\r\n            </div>\r\n        </div>\r\n        \r\n        <item-ui-edit-comment ng-if=\"$ctrl.editing\" altered-model=\"$ctrl.editing\"\r\n                              on-save=\"$ctrl.saveEdit(promise)\"\r\n                              on-discard=\"$ctrl.discardEdit()\"\r\n                              form=\"itemReviewForm\"></item-ui-edit-comment>\r\n    </form>\r\n    <hr>\r\n   <!--\r\n       \r\n{\"Id\":2,\"Rating\":5,\"Comment\":\"Awesome!\"}   \r\n    -->\r\n    <div class=\"col-lg-12 organizer clearfix\">\r\n        <div class=\"inline-block\">\r\n            <ul uib-pagination ng-change=\"$ctrl.refresh()\"\r\n                items-per-page=\"$ctrl.orderReview.perPage\"\r\n                total-items=\"$ctrl.orderReview.totalItems\"\r\n                ng-model=\"$ctrl.orderReview.page\"\r\n                ng-hide=\"$ctrl.busy || $ctrl.orderReview.totalItems < $ctrl.orderReview.perPage\"\r\n                max-size=\"10\" class=\"pagination\" boundary-links=\"true\" rotate=\"false\" direction-links=\"false\"\r\n                previous-text=\"&lsaquo;\" next-text=\"&rsaquo;\" first-text=\"&laquo;\" last-text=\"&raquo;\"></ul>\r\n        </div>\r\n        <div ng-if=\"$ctrl.busy\" class=\"inline-block\">\r\n            <span class=\"fa fa-lg fa-spinner loading-spinner\" aria-hidden=\"true\"></span> Loading...\r\n        </div>\r\n        <div ng-if=\"$ctrl.failed\" class=\"inline-block\">\r\n            <span class=\"fa fa-lg fa-ban text-danger\" aria-hidden=\"true\"></span> Loading failed <a ng-click=\"$ctrl.refresh()\">try again</a>?\r\n        </div>\r\n        <div class=\"inline-block pull-right\">\r\n            <order-ui id=\"{{$ctrl.item.id}}\"\r\n                      order=\"$ctrl.orderReview\"\r\n                      update=\"$ctrl.refresh()\"\r\n                      disabled=\"$ctrl.busy\"></order-ui>\r\n        </div>\r\n    </div>\r\n    <div class=\"result-list\">\r\n        <div ng-if=\"!$ctrl.busy\"\r\n             class=\"col-md-6\"\r\n             ng-repeat=\"review in $ctrl.reviews\">\r\n            <span>{{ review.comment }}</span>\r\n            <p>\r\n                <item-ui review-model=\"review\"\r\n                        read-only=\"true\"></item-ui>\r\n                <div class=\"text-muted\">{{ review.date | date: \"MMMM d, yyyy\" }}</div>\r\n            </p>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div>\r\n    <div class=\"jumbotron\">\r\n        <h1><i class=\" fa fa-question-circle\" aria-hidden=\"true\"></i> Help</h1>\r\n        <p class=\"lead\">What is SampleReview?</p>\r\n\r\n        <p class=\"text-muted\">\r\n            A very simple responsive application built on .NET, WebAPI and Angular 1.5.8\r\n        </p>\r\n    </div>\r\n\r\n    <p>\r\n        Review your favorite items (websites, products in the home list) and organize them by popularity or average rating among other columns.\r\n    </p>\r\n    <p>\r\n        While the use-case may be pretty simple, there's a lot under the hood illustrating my best-practices and development process.\r\n\r\n        <div class=\"small alert alert-info\">\r\n            You can clone this source now from <a href=\"https://github.com/GUSCRAWFORD/SmithReview\">GitHub</a>, or send an <a href=\"mailto:crawford.gus@gmail.com?subject=Requesting%20Access%20To%20SmithReview\">email</a> with a Microsoft email to be added to a TFS team with further details like storyboarding/backlogs, tasks, and future iterations for this example project.\r\n        </div>\r\n        Exploring the source of this application illustrating:\r\n        <ul>\r\n            <li>\r\n                A Restful WebAPI Exposing a Business Project\r\n                <ul>\r\n                    <li>A T-SQL database connection &amp; ORM built on Entity Framework.</li>\r\n                    <li>An IoC implementation built on Unity mapping \"driver\" projects to design-contract interfaces.</li>\r\n                    <li>A simple repository pattern designed from a test-driven perspective.</li>\r\n                    <li>Unit Test projects using Microsoft Testing Tools &amp; Moq testing individual components at every layer.</li>\r\n                    <li>Clearly defined business-rule layer and traceable violations.</li>\r\n                </ul>\r\n            </li>\r\n            <li>\r\n                A Responsive AngularJS Application\r\n                <ul>\r\n                    <li>A clearly organized UI developed in a component pattern to isolate reusable UI fragments.</li>\r\n                    <li>Responsive, accessible and mobile-friendly user-interface built on UI Bootstrap.</li>\r\n                    <li>Clearly defined client-application and user-experience separated concerns.</li>\r\n                    <li>Client services built on ngResource and the $resource factory, reducing code and promoting best-practice API design.</li>\r\n                    <li>A NodeJS based build-pipeline built on Grunt task-runner, webpack, Sass&mdash;packing the app into an efficient module and source-mapping for easy debugging.</li>\r\n                    <li>Behavioral-driven JavaScript unit-tests built on Jasmine and automated with Karma.</li>\r\n                </ul>\r\n            </li>\r\n\r\n        </ul>\r\n        <a class=\"btn btn-sm btn-default\" href=\"https://github.com/GUSCRAWFORD/SmithReview\" target=\"_blank\" role=\"button\">\r\n            <i class=\"fa fa-github\" aria-hidden=\"true\"></i> Clone from GitHub\r\n        </a>\r\n    </p>\r\n</div>";
 
 /***/ }),
 /* 26 */
+/***/ (function(module, exports) {
+
+module.exports = "<!--\r\n{   \r\n    \"Id\":1,\r\n    \"Name\":\"GitHub\",\r\n    \"Icon\":null,\r\n    \"AverageRating\":5,\r\n    \"SampleSize\":1,\r\n    \"Highest\":5,\r\n    \"Lowest\":5\r\n}\r\n-->\r\n<div class=\"row marketing\">\r\n    <form name=\"itemReviewForm\">\r\n        <item item-model=\"$ctrl.item\" review-model=\"$ctrl.editing\" change=\"$ctrl.edit(rating)\"></item>\r\n        \r\n        <item-ui-edit-comment ng-if=\"$ctrl.editing\" altered-model=\"$ctrl.editing\"\r\n                              on-save=\"$ctrl.saveEdit(promise)\"\r\n                              on-discard=\"$ctrl.discardEdit()\"\r\n                              form=\"itemReviewForm\"></item-ui-edit-comment>\r\n    </form>\r\n    <hr>\r\n   <!--\r\n       \r\n{\"Id\":2,\"Rating\":5,\"Comment\":\"Awesome!\"}   \r\n    -->\r\n    <div class=\"col-lg-12 organizer clearfix\">\r\n        <div class=\"inline-block\">\r\n            <ul uib-pagination ng-change=\"$ctrl.refresh()\"\r\n                items-per-page=\"$ctrl.orderReview.perPage\"\r\n                total-items=\"$ctrl.orderReview.totalItems\"\r\n                ng-model=\"$ctrl.orderReview.page\"\r\n                ng-hide=\"$ctrl.busy || $ctrl.orderReview.totalItems < $ctrl.orderReview.perPage\"\r\n                max-size=\"10\" class=\"pagination\" boundary-links=\"true\" rotate=\"false\" direction-links=\"false\"\r\n                previous-text=\"&lsaquo;\" next-text=\"&rsaquo;\" first-text=\"&laquo;\" last-text=\"&raquo;\"></ul>\r\n        </div>\r\n        <div ng-if=\"$ctrl.busy\" class=\"inline-block\">\r\n            <span class=\"fa fa-lg fa-spinner loading-spinner\" aria-hidden=\"true\"></span> Loading...\r\n        </div>\r\n        <div ng-if=\"$ctrl.failed\" class=\"inline-block\">\r\n            <span class=\"fa fa-lg fa-ban text-danger\" aria-hidden=\"true\"></span> Loading failed <a ng-click=\"$ctrl.refresh()\">try again</a>?\r\n        </div>\r\n        <div class=\"inline-block pull-right\">\r\n            <order-ui id=\"{{$ctrl.item.id}}\"\r\n                      order=\"$ctrl.orderReview\"\r\n                      update=\"$ctrl.refresh()\"\r\n                      disabled=\"$ctrl.busy\"></order-ui>\r\n        </div>\r\n    </div>\r\n    <div class=\"result-list\">\r\n        <div ng-if=\"!$ctrl.busy\"\r\n             class=\"col-md-6\"\r\n             ng-repeat=\"review in $ctrl.reviews\">\r\n            <span>{{ review.comment }}</span>\r\n            <p>\r\n                <item-ui review-model=\"review\"\r\n                        read-only=\"true\"></item-ui>\r\n                <div class=\"text-muted\">{{ review.date | date: \"MMMM d, yyyy\" }}</div>\r\n            </p>\r\n        </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ﻿var angular = __webpack_require__(0);
 angular.module('ui.review')
 	.component('catalog', {
-		template: __webpack_require__(20),
+		template: __webpack_require__(19),
 		controller: catalogController
 	})
 	.config(function ($routeProvider) {
@@ -44237,31 +44246,19 @@ function catalogController(itemResource, constraints) {
 }
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var angular = __webpack_require__(0);
-angular.module('ui.review')
-	.component('gusPlusTfs', {
-		template: __webpack_require__(21),
-		bindings: {
-			item: '<'
-		}
-	})
-	.config(function ($routeProvider) {
-		$routeProvider.when('/gus-plus-tfs', {
-			template: '<gus-plus-tfs></gus-plus-tfs>'
-		})
-	});
+﻿__webpack_require__(29);
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var angular = __webpack_require__(0);
 angular.module('ui.review')
 	.component('itemUiEditComment', {
-		template: __webpack_require__(22),
+		template: __webpack_require__(20),
 		controller: itemUiEditCommentController,
 		bindings: {
             alteredModel:'=',
@@ -44275,9 +44272,7 @@ itemUiEditCommentController.$inject = ['constraints','reviewResource'];
 function itemUiEditCommentController(constraints, reviewResource) {
     var ctrl = this;
 	ctrl.saveEdit = saveEdit;
-	ctrl.$onInit= function () {
-		ctrl;
-	}
+    ctrl.constraints = constraints;
 
 	function saveEdit() {
 		if (ctrl.form.$valid) {
@@ -44291,13 +44286,19 @@ function itemUiEditCommentController(constraints, reviewResource) {
 }
 
 /***/ }),
-/* 29 */
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+﻿__webpack_require__(31);
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var angular = __webpack_require__(0);
 angular.module('ui.review')
 	.component('itemUi', {
-		template: __webpack_require__(23),
+		template: __webpack_require__(21),
 		controller: itemUiController,
 		bindings: {
 			itemModel:'=',
@@ -44314,13 +44315,51 @@ function itemUiController(constraints) {
 }
 
 /***/ }),
-/* 30 */
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+﻿__webpack_require__(33);
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var angular = __webpack_require__(0);
+angular.module('ui.review')
+	.component('item', {
+		template: __webpack_require__(22),
+        controller: itemController,
+		bindings: {
+			itemModel:'=',
+            readOnly:'@',
+            change:'&',
+            reviewModel:'='
+		}
+	});
+
+itemController.$inject = ['constraints'];
+function itemController(constraints) {
+    var ctrl = this;
+    ctrl.constraints = constraints;
+    ctrl.onChange = function (val) {
+        ctrl.change({ rating: val })
+    };
+}
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+﻿__webpack_require__(35);
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ﻿var angular = __webpack_require__(0);
 angular.module('ui.review')
 	.component('orderUi', {
-		template: __webpack_require__(24),
+		template: __webpack_require__(23),
 		controller: orderUiController,
 		bindings: {
 			order: '=',
@@ -44375,13 +44414,43 @@ function orderUiController(constraints) {
 }
 
 /***/ }),
-/* 31 */
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var angular = __webpack_require__(0);
+angular.module('ui.review')
+	.component('gusPlusTfs', {
+		template: __webpack_require__(24)
+	})
+	.config(function ($routeProvider) {
+		$routeProvider.when('/gus-plus-tfs', {
+			template: '<gus-plus-tfs></gus-plus-tfs>'
+		})
+	});
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var angular = __webpack_require__(0);
+angular.module('ui.review')
+	.component('help', {
+		template: __webpack_require__(25)
+	})
+	.config(function ($routeProvider) {
+		$routeProvider.when('/help', {
+			template: '<help></help>'
+		})
+	});
+
+/***/ }),
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ﻿var angular = __webpack_require__(0);
 angular.module('ui.review')
 	.component('review', {
-		template: __webpack_require__(25),
+		template: __webpack_require__(26),
 		controller: reviewController,
 		bindings: {
 			item: '<'
@@ -44472,7 +44541,7 @@ function reviewController($scope, reviewResource, itemResource, constraints, $q)
 }
 
 /***/ }),
-/* 32 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ﻿var angular = __webpack_require__(0);
@@ -44486,12 +44555,11 @@ angular.element(function () {
 });
 
 __webpack_require__(4);
-__webpack_require__(9);
-__webpack_require__(5);
-
 __webpack_require__(8);
-__webpack_require__(7);
 __webpack_require__(6);
+__webpack_require__(7);
+
+__webpack_require__(5);
 
 /***/ })
 /******/ ]);

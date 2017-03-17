@@ -17,15 +17,18 @@
         <div class="header clearfix">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active">
+                    <li role="presentation">
                         <a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                     </li>
-                    <li role="presentation" class="active">
-                        <a href="#!/gus-plus-tfs"><i class="fa fa-home" aria-hidden="true"></i> Gus + TFS</a>
-                    </li>                    
+                    <li role="presentation">
+                        <a href="#!/gus-plus-tfs"><i class="vso-icon" aria-hidden="true"></i> Gus + TFS</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#!/help"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+                    </li>
                 </ul>
             </nav>
-            <h3 class="text-muted"><i class="fa fa-cubes fa-2x" aria-hidden="true"></i> Sample Review Application</h3>
+            <h3 class="text-muted"><i class="fa fa-star-half-o fa-2x" aria-hidden="true"></i> Sample Review Application</h3>
         </div>
         <hr>
         <div ng-view></div>

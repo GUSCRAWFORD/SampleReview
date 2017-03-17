@@ -15,9 +15,7 @@ itemUiEditCommentController.$inject = ['constraints','reviewResource'];
 function itemUiEditCommentController(constraints, reviewResource) {
     var ctrl = this;
 	ctrl.saveEdit = saveEdit;
-	ctrl.$onInit= function () {
-		ctrl;
-	}
+    ctrl.constraints = constraints;
 
 	function saveEdit() {
 		if (ctrl.form.$valid) {
