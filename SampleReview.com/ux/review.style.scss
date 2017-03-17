@@ -22,12 +22,19 @@ body {
 }
 
 ul.project-details {
+    padding-left: 0px;
+
     li {
         list-style-type: none;
         font-size: 12pt;
         margin-bottom: 3pt;
+
         ul {
-            li { font-size: 11pt; }
+            padding-left: 0pt;
+
+            li {
+                font-size: 11pt;
+            }
 
             .fa {
                 font-size: 16pt;
@@ -53,6 +60,10 @@ ul.project-details {
     }
 }
 
+.inline-block-90 {
+    @extend .inline-block;
+    max-width:88%;
+}
 [ng-click] {
     cursor:pointer;
 }
