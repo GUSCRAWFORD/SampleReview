@@ -1,6 +1,8 @@
 # SampleReview
 A sample Single-Page Application built on .NET, C#, EF, T-Sql, WebAPI, Angular 1.5, with a NodeJs dev pipeline
-An end-to-end practical example illustrating the different platforms and patterns I'm experienced with.
+An end-to-end practical example illustrating the different frameworks and patterns I'm experienced with.
+
+[Try out](http://guscrawford.com/samplereview) this application or clone, build and test locally.
 
 # Getting Started
 The project requries you have installed Visual Studio and NodeJs (grunt-cli, karma-cli globally installed) and aren't blocked from updating packages

@@ -69,6 +69,7 @@
     <Content Include="css\review.style.css" />
     <Content Include="js\ui.review.js" />
     <Content Include="packages.config" />
+    <Content Include="tests\ux\components\order-ui\order-ui.component.spec.js" />
     <Content Include="ux\catalog\catalog.scss" />
     <Content Include="ux\components\index.js" />
     <Content Include="ux\components\item\index.js" />
@@ -93,6 +94,8 @@
     <Content Include="css\review.style.css.map" />
     <Content Include="js\ui.review.js.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="ux\help\help.scss" />
+    <Content Include="ux\components\item-ui-edit-comment\item-ui-edit-comment.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

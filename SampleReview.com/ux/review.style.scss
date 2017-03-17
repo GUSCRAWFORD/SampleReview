@@ -20,30 +20,8 @@ body {
     font-style:normal;
 }
 
-ul.project-details {
-    padding-left: 0px;
 
-    li {
-        list-style-type: none;
-        font-size: 16pt;
-        margin-bottom: 6pt;
 
-        ul {
-            padding-left: 0pt;
-            margin-bottom: 12pt;
-
-            li {
-                font-size: 12pt;
-            }
-        }
-    }
-
-    .fa {
-        color: #666;
-        font-size: 18pt;
-        margin-right: 6pt;
-    }
-}
 .inline-block {
     display:inline-block;
     vertical-align:text-top;
@@ -84,8 +62,11 @@ ul.project-details {
         margin-top: 1pt;
     }
 
-    .col-sm-6 {
+    .col-xs-6 {
         padding: 1pt;
+    }
+    .auto-scroll {
+        overflow:auto;
     }
 }
 
@@ -97,6 +78,10 @@ ul.project-details {
 .result-list {
 
 }
+
+@import 'help/help.scss';
+@import 'components/item-ui-edit-comment/item-ui-edit-comment.scss';
+
 @import 'loading-spinner.scss';
 @import 'catalog/catalog.scss';
 @import 'review/review.scss';
