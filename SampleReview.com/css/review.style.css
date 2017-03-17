@@ -19,6 +19,21 @@ body {
   content: "\e91d ";
   font-style: normal; }
 
+ul.project-details li {
+  list-style-type: none;
+  font-size: 12pt;
+  margin-bottom: 3pt; }
+  ul.project-details li ul li {
+    font-size: 11pt; }
+  ul.project-details li ul .fa {
+    font-size: 16pt;
+    color: #333; }
+
+ul.project-details .fa {
+  color: #999;
+  font-size: 18pt;
+  margin-right: 6pt; }
+
 .inline-block {
   display: inline-block;
   vertical-align: text-top; }

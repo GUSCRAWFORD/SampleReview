@@ -13,7 +13,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="header clearfix">
             <nav>
                 <ul class="nav nav-pills pull-right">

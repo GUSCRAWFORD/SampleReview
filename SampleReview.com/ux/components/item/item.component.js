@@ -7,7 +7,8 @@ angular.module('ui.review')
 			itemModel:'=',
             readOnly:'@',
             change:'&',
-            reviewModel:'='
+            reviewModel: '=',
+            titleLinksToItem:'@'
 		}
 	});
 

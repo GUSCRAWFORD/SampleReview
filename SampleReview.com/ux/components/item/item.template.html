@@ -4,10 +4,10 @@
     </div>
 
     <div class="inline-block">
-        <h4 ng-if="!$ctrl.reviewModel">
+        <h4 ng-if="$ctrl.titleLinksToItem">
             <a href="#!/review/{{$ctrl.itemModel.id}}">{{ $ctrl.itemModel.name }}</a>
         </h4>
-        <h4 ng-if="$ctrl.reviewModel">{{ $ctrl.itemModel.name }}</h4>
+        <h4 ng-if="!$ctrl.titleLinksToItem">{{ $ctrl.itemModel.name }}</h4>
         <p>
             <item-ui item-model="$ctrl.itemModel"
                      read-only="{{$ctrl.readOnly}}"
