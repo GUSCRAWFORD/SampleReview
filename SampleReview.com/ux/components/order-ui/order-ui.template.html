@@ -12,7 +12,7 @@
         <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="reverse{{$ctrl.id}}">
             <li ng-repeat="column in $ctrl.order.by"
                 role="menuitem">
-                <a ng-click="$ctrl.orderBy($ctrl.stripOrder(column))">
+                <a ng-click="$ctrl.orderBy(column)">
                     {{$ctrl.colOptions(column).prefix[($ctrl.asc(column)?'asc':'desc')]}}
                     {{$ctrl.colOptions(column).label}}
                 </a>

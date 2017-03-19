@@ -23,14 +23,11 @@
         ctrl = $componentController('orderUi', null, bindings);
     }));
     describe('`.orderBy`', function () {
-        it('sets the desired column to the top of ordering priority, with it\'s configured `defaultAsc` option and calls `.update()`', function () {
+        it('sets the desired column to the top of ordering priority, with it\'s current reversing prefix-option and calls `.update()`', function () {
             var col = 'y';
             ctrl.orderBy(col);
-            expect(ctrl.order.by).toEqual(['+y', '-x']);
+            expect(ctrl.order.by).toEqual(['y', '-x']);
             expect(updateSpy).toHaveBeenCalled();
-        });
-        it('calls api a particular way', function () {
-
         });
     });
     describe('`.reverse`', function () {

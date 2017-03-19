@@ -29,7 +29,7 @@ function orderUiController(constraints) {
 	}
 	function orderBy(col) {
 		ctrl.unorder(col);
-        ctrl.order.by.unshift(ctrl.order.options[ctrl.stripOrder(col)].defaultAsc + col);
+        ctrl.order.by.unshift(col);
 		ctrl.update();
 	}
     function reverse(col) {

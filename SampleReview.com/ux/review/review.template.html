@@ -1,15 +1,4 @@
-﻿<!--
-{   
-    "Id":1,
-    "Name":"GitHub",
-    "Icon":null,
-    "AverageRating":5,
-    "SampleSize":1,
-    "Highest":5,
-    "Lowest":5
-}
--->
-<div class="row marketing">
+﻿<div class="row marketing">
     <form name="itemReviewForm">
         <item item-model="$ctrl.item" review-model="$ctrl.editing" change="$ctrl.edit(rating)"></item>
         
@@ -18,13 +7,11 @@
                               on-discard="$ctrl.discardEdit()"
                               form="itemReviewForm"></item-ui-edit-comment>
     </form>
+
     <hr>
-   <!--
-       
-{"Id":2,"Rating":5,"Comment":"Awesome!"}   
-    -->
+
     <div class="organizer clearfix">
-        <div class="">
+        <div class="col-xs-4">
             <ul uib-pagination ng-change="$ctrl.refresh()"
                 items-per-page="$ctrl.orderReview.perPage"
                 total-items="$ctrl.orderReview.totalItems"
@@ -33,7 +20,7 @@
                 max-size="3" class="pagination" boundary-links="false" rotate="true" direction-links="false"
                 previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ></ul>
         </div>
-        <div class="">
+        <div class="col-xs-8">
             <order-ui id="{{$ctrl.item.id}}"
                       order="$ctrl.orderReview"
                       update="$ctrl.refresh()"
