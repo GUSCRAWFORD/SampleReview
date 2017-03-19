@@ -44145,7 +44145,7 @@ $provide.value("$locale", {
 /* 19 */
 /***/ (function(module, exports) {
 
-module.exports = "<!--\r\n{   \r\n    \"Id\":1,\r\n    \"Name\":\"GitHub\",\r\n    \"Icon\":null,\r\n    \"AverageRating\":5,\r\n    \"SampleSize\":1,\r\n    \"Highest\":5,\r\n    \"Lowest\":5\r\n}\r\n-->\r\n<div class=\"row marketing\">\r\n\r\n    <div class=\"col-lg-12 organizer clearfix\">\r\n        <div class=\"col-xs-6 auto-scroll\">\r\n            <ul uib-pagination items-per-page=\"$ctrl.orderItems.perPage\"\r\n                direction-links=\"false\"\r\n                ng-change=\"$ctrl.refresh()\"\r\n                ng-hide=\"$ctrl.busy || $ctrl.orderItems.totalItems < $ctrl.orderItems.perPage\"\r\n                total-items=\"$ctrl.orderItems.totalItems\"\r\n                ng-model=\"$ctrl.orderItems.page\" max-size=\"7\" class=\"pagination\" boundary-links=\"true\" rotate=\"true\"\r\n                previous-text=\"&lsaquo;\" next-text=\"&rsaquo;\" first-text=\"&laquo;\" last-text=\"&raquo;\"></ul></div>\r\n        <div class=\"col-xs-6 text-right\">\r\n            <order-ui id=\"Items\" order=\"$ctrl.orderItems\"\r\n                      update=\"$ctrl.refresh()\"\r\n                      disabled=\"$ctrl.busy\"></order-ui>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"result-list col-lg-12\">\r\n        <div ng-if=\"$ctrl.busy\">\r\n            <span class=\"fa fa-lg fa-spinner loading-spinner\" aria-hidden=\"true\"></span> Loading...\r\n        </div>\r\n        <div ng-if=\"$ctrl.failed\">\r\n            <span class=\"fa fa-lg fa-ban text-danger\" aria-hidden=\"true\"></span> Loading failed <a ng-click=\"$ctrl.refresh()\">Try again</a>\r\n        </div>\r\n        <div ng-if=\"!$ctrl.busy\"\r\n             ng-repeat=\"item in $ctrl.items\"\r\n             class=\"col-md-6\">\r\n\r\n        <item item-model=\"item\" read-only=\"true\" title-links-to-item=\"true\"></item>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<!--\r\n{   \r\n    \"Id\":1,\r\n    \"Name\":\"GitHub\",\r\n    \"Icon\":null,\r\n    \"AverageRating\":5,\r\n    \"SampleSize\":1,\r\n    \"Highest\":5,\r\n    \"Lowest\":5\r\n}\r\n-->\r\n<div class=\"row marketing\">\r\n\r\n    <div class=\"organizer clearfix\">\r\n        <div class=\"col-xs-4\">\r\n            <ul uib-pagination items-per-page=\"$ctrl.orderItems.perPage\"\r\n                direction-links=\"false\"\r\n                ng-change=\"$ctrl.refresh()\"\r\n                ng-hide=\"$ctrl.busy || $ctrl.orderItems.totalItems < $ctrl.orderItems.perPage\"\r\n                total-items=\"$ctrl.orderItems.totalItems\"\r\n                ng-model=\"$ctrl.orderItems.page\" max-size=\"3\" class=\"pagination\" boundary-links=\"false\" rotate=\"true\"\r\n                previous-text=\"&lsaquo;\" next-text=\"&rsaquo;\" first-text=\"&laquo;\" last-text=\"&raquo;\"></ul></div>\r\n        <div class=\"col-xs-8\">\r\n            <order-ui id=\"Items\" order=\"$ctrl.orderItems\"\r\n                      update=\"$ctrl.refresh()\"\r\n                      disabled=\"$ctrl.busy\"></order-ui>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"result-list\">\r\n        <div ng-if=\"$ctrl.busy\">\r\n            <span class=\"fa fa-lg fa-spinner loading-spinner\" aria-hidden=\"true\"></span> Loading...\r\n        </div>\r\n        <div ng-if=\"$ctrl.failed\">\r\n            <span class=\"fa fa-lg fa-ban text-danger\" aria-hidden=\"true\"></span> Loading failed <a ng-click=\"$ctrl.refresh()\">Try again</a>\r\n        </div>\r\n        <div ng-if=\"!$ctrl.busy\"\r\n             ng-repeat=\"item in $ctrl.items\"\r\n             class=\"col-sm-6\">\r\n\r\n        <item item-model=\"item\" read-only=\"true\" title-links-to-item=\"true\"></item>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 20 */
@@ -44169,7 +44169,7 @@ module.exports = "<div>\r\n    <div class=\"inline-block item-icon\">\r\n       
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<form ng-disabled=\"$ctrl.disabled\">\r\n    <div class=\"btn-group\" uib-dropdown>\r\n        <button id=\"reverse{{$ctrl.id}}\" type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.reverse($ctrl.order.by[0])\">\r\n            <i class=\"fa fa-sort-{{$ctrl.order.options[$ctrl.stripAsc($ctrl.order.by[0])].type}}-{{$ctrl.asc($ctrl.order.by[0])?'asc':'desc'}}\" aria-hidden=\"true\"></i>\r\n        </button>\r\n        <button type=\"button\" class=\"btn btn-default\" uib-dropdown-toggle>\r\n            {{$ctrl.order.options[$ctrl.stripAsc($ctrl.order.by[0])].prefix[($ctrl.asc($ctrl.order.by[0])?'asc':'desc')]}}\r\n            {{$ctrl.order.options[$ctrl.stripAsc($ctrl.order.by[0])].label}}\r\n            <span class=\"caret\"></span>\r\n            <span class=\"sr-only\">Arrange by</span>\r\n        </button>\r\n        <ul class=\"dropdown-menu\" uib-dropdown-menu role=\"menu\" aria-labelledby=\"reverse{{$ctrl.id}}\">\r\n            <li ng-repeat=\"column in $ctrl.order.by\"\r\n                role=\"menuitem\">\r\n                <a ng-click=\"$ctrl.orderBy($ctrl.stripAsc(column))\">\r\n                    {{$ctrl.order.options[$ctrl.stripAsc(column)].prefix[(($ctrl.order.options[$ctrl.stripAsc(column)].defaultAsc=='+')?'asc':'desc')]}}\r\n                    {{$ctrl.order.options[$ctrl.stripAsc(column)].label}}\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</form>";
+module.exports = "<form ng-disabled=\"$ctrl.disabled\">\r\n    <div class=\"btn-group\" uib-dropdown>\r\n        <button id=\"reverse{{$ctrl.id}}\" type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.reverse($ctrl.order.by[0])\">\r\n            <i class=\"fa fa-sort-{{$ctrl.colOptions($ctrl.order.by[0]).type}}-{{$ctrl.asc($ctrl.order.by[0])?'asc':'desc'}}\" aria-hidden=\"true\"></i>\r\n        </button>\r\n        <button type=\"button\" class=\"btn btn-default\" uib-dropdown-toggle>\r\n            {{$ctrl.colOptions($ctrl.order.by[0]).prefix[($ctrl.asc($ctrl.order.by[0])?'asc':'desc')]}}\r\n            {{$ctrl.colOptions($ctrl.order.by[0]).label}}\r\n            <span class=\"caret\"></span>\r\n            <span class=\"sr-only\">Arrange by</span>\r\n        </button>\r\n        <ul class=\"dropdown-menu\" uib-dropdown-menu role=\"menu\" aria-labelledby=\"reverse{{$ctrl.id}}\">\r\n            <li ng-repeat=\"column in $ctrl.order.by\"\r\n                role=\"menuitem\">\r\n                <a ng-click=\"$ctrl.orderBy($ctrl.stripOrder(column))\">\r\n                    {{$ctrl.colOptions(column).prefix[($ctrl.asc(column)?'asc':'desc')]}}\r\n                    {{$ctrl.colOptions(column).label}}\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</form>";
 
 /***/ }),
 /* 24 */
@@ -44187,7 +44187,7 @@ module.exports = "<div>\r\n    <div class=\"jumbotron\">\r\n        <h1><i class
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = "<!--\r\n{   \r\n    \"Id\":1,\r\n    \"Name\":\"GitHub\",\r\n    \"Icon\":null,\r\n    \"AverageRating\":5,\r\n    \"SampleSize\":1,\r\n    \"Highest\":5,\r\n    \"Lowest\":5\r\n}\r\n-->\r\n<div class=\"row marketing\">\r\n    <form name=\"itemReviewForm\">\r\n        <item item-model=\"$ctrl.item\" review-model=\"$ctrl.editing\" change=\"$ctrl.edit(rating)\"></item>\r\n        \r\n        <item-ui-edit-comment ng-if=\"$ctrl.editing\" altered-model=\"$ctrl.editing\"\r\n                              on-save=\"$ctrl.saveEdit(promise)\"\r\n                              on-discard=\"$ctrl.discardEdit()\"\r\n                              form=\"itemReviewForm\"></item-ui-edit-comment>\r\n    </form>\r\n    <hr>\r\n   <!--\r\n       \r\n{\"Id\":2,\"Rating\":5,\"Comment\":\"Awesome!\"}   \r\n    -->\r\n    <div class=\"col-lg-12 organizer clearfix\">\r\n        <div class=\"col-xs-6 auto-scroll\">\r\n            <ul uib-pagination ng-change=\"$ctrl.refresh()\"\r\n                items-per-page=\"$ctrl.orderReview.perPage\"\r\n                total-items=\"$ctrl.orderReview.totalItems\"\r\n                ng-model=\"$ctrl.orderReview.page\"\r\n                ng-hide=\"$ctrl.busy || $ctrl.orderReview.totalItems < $ctrl.orderReview.perPage\"\r\n                max-size=\"7\" class=\"pagination\" boundary-links=\"true\" rotate=\"true\" direction-links=\"false\"\r\n                previous-text=\"&lsaquo;\" next-text=\"&rsaquo;\" first-text=\"&laquo;\" last-text=\"&raquo;\" ></ul>\r\n        </div>\r\n        <div class=\"col-xs-6 text-right\">\r\n            <order-ui id=\"{{$ctrl.item.id}}\"\r\n                      order=\"$ctrl.orderReview\"\r\n                      update=\"$ctrl.refresh()\"\r\n                      disabled=\"$ctrl.busy\"></order-ui>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"result-list\">\r\n        <div ng-if=\"$ctrl.busy\">\r\n            <span class=\"fa fa-lg fa-spinner loading-spinner\" aria-hidden=\"true\"></span> Loading...\r\n        </div>\r\n        <div ng-if=\"$ctrl.failed\">\r\n            <span class=\"fa fa-lg fa-ban text-danger\" aria-hidden=\"true\"></span> Loading failed <a ng-click=\"$ctrl.refresh()\">try again</a>?\r\n        </div>\r\n        <div ng-if=\"!$ctrl.busy\"\r\n             class=\"col-md-6\"\r\n             ng-repeat=\"review in $ctrl.reviews\">\r\n            <span>{{ review.comment }}</span>\r\n            <p>\r\n                <item-ui review-model=\"review\"\r\n                        read-only=\"true\"></item-ui>\r\n                <div class=\"text-muted\">{{ review.date | date: \"MMMM d, yyyy\" }}</div>\r\n            </p>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<!--\r\n{   \r\n    \"Id\":1,\r\n    \"Name\":\"GitHub\",\r\n    \"Icon\":null,\r\n    \"AverageRating\":5,\r\n    \"SampleSize\":1,\r\n    \"Highest\":5,\r\n    \"Lowest\":5\r\n}\r\n-->\r\n<div class=\"row marketing\">\r\n    <form name=\"itemReviewForm\">\r\n        <item item-model=\"$ctrl.item\" review-model=\"$ctrl.editing\" change=\"$ctrl.edit(rating)\"></item>\r\n        \r\n        <item-ui-edit-comment ng-if=\"$ctrl.editing\" altered-model=\"$ctrl.editing\"\r\n                              on-save=\"$ctrl.saveEdit(promise)\"\r\n                              on-discard=\"$ctrl.discardEdit()\"\r\n                              form=\"itemReviewForm\"></item-ui-edit-comment>\r\n    </form>\r\n    <hr>\r\n   <!--\r\n       \r\n{\"Id\":2,\"Rating\":5,\"Comment\":\"Awesome!\"}   \r\n    -->\r\n    <div class=\"organizer clearfix\">\r\n        <div class=\"\">\r\n            <ul uib-pagination ng-change=\"$ctrl.refresh()\"\r\n                items-per-page=\"$ctrl.orderReview.perPage\"\r\n                total-items=\"$ctrl.orderReview.totalItems\"\r\n                ng-model=\"$ctrl.orderReview.page\"\r\n                ng-hide=\"$ctrl.busy || $ctrl.orderReview.totalItems < $ctrl.orderReview.perPage\"\r\n                max-size=\"3\" class=\"pagination\" boundary-links=\"false\" rotate=\"true\" direction-links=\"false\"\r\n                previous-text=\"&lsaquo;\" next-text=\"&rsaquo;\" first-text=\"&laquo;\" last-text=\"&raquo;\" ></ul>\r\n        </div>\r\n        <div class=\"\">\r\n            <order-ui id=\"{{$ctrl.item.id}}\"\r\n                      order=\"$ctrl.orderReview\"\r\n                      update=\"$ctrl.refresh()\"\r\n                      disabled=\"$ctrl.busy\"></order-ui>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"result-list\">\r\n        <div ng-if=\"$ctrl.busy\">\r\n            <span class=\"fa fa-lg fa-spinner loading-spinner\" aria-hidden=\"true\"></span> Loading...\r\n        </div>\r\n        <div ng-if=\"$ctrl.failed\">\r\n            <span class=\"fa fa-lg fa-ban text-danger\" aria-hidden=\"true\"></span> Loading failed <a ng-click=\"$ctrl.refresh()\">try again</a>?\r\n        </div>\r\n        <div ng-if=\"!$ctrl.busy\"\r\n             class=\"col-sm-6\"\r\n             ng-repeat=\"review in $ctrl.reviews\">\r\n            <span>{{ review.comment }}</span>\r\n            <p>\r\n                <item-ui review-model=\"review\"\r\n                        read-only=\"true\"></item-ui>\r\n                <div class=\"text-muted\">{{ review.date | date: \"MMMM d, yyyy\" }}</div>\r\n            </p>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 27 */
@@ -44374,32 +44374,35 @@ orderUiController.$inject = ['constraints'];
 function orderUiController(constraints) {
 	var ctrl = this;
 	ctrl.$onInit = onInit;
-	ctrl.constraints = constraints;
-	ctrl.stripAsc = stripAsc;
-	ctrl.asc = asc;
+    ctrl.constraints = constraints;
+    ctrl.stripOrder = stripOrder;
+    ctrl.asc = asc;
+    ctrl.desc = desc;
 	ctrl.orderBy = orderBy;
 	ctrl.unorder = unorder;
-	ctrl.reverse = reverse;
+    ctrl.reverse = reverse;
+    ctrl.get = get;
+    ctrl.colOptions = colOptions;
 	function onInit() {
 
 	}
 	function orderBy(col) {
 		ctrl.unorder(col);
-		ctrl.order.by.unshift(ctrl.order.options[ctrl.stripAsc(col)].defaultAsc + col);
+        ctrl.order.by.unshift(ctrl.order.options[ctrl.stripOrder(col)].defaultAsc + col);
 		ctrl.update();
 	}
-	function reverse(col) {
-		var i = get(ctrl.stripAsc(col));
-		ctrl.order.by[i] = (asc(col) ? '-' : '+') + ctrl.stripAsc(col);
+    function reverse(col) {
+		var i = ctrl.get(col);
+        ctrl.order.by[i] = (ctrl.asc(col) ? '-' : '+') + ctrl.stripOrder(col);
 		ctrl.update();
 	}
 	function unorder(col) {
-		var i = get(col);
+		var i = ctrl.get(col);
 		ctrl.order.by.splice(i, 1);
 	}
 	function get(col) {
 		for (var i = 0; i < ctrl.order.by.length; i++) {
-			if (stripAsc(ctrl.order.by[i]) === col) {
+            if (ctrl.stripOrder(ctrl.order.by[i]) === ctrl.stripOrder(col)) {
 				return i;
 			}
 		}
@@ -44407,11 +44410,18 @@ function orderUiController(constraints) {
 	function asc(col) {
 		if (col[0] === '-') return false;
 		return true;
-	}
-	function stripAsc(col) {
-		if (col[0] === '-' || col[0] === '+') return col.substring(1);
+    }
+    function desc(col) {
+        if (col[0] == '+') return false;
+        return true;
+    }
+	function stripOrder(col) {
+		if (!asc(col) || !desc(col)) return col.substring(1);
 		return col;
-	}
+    }
+    function colOptions(col) {
+        return ctrl.order.options[ctrl.stripOrder(col)];
+    }
 }
 
 /***/ }),

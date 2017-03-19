@@ -94,7 +94,7 @@ namespace SampleReview.Data.Repo {
             }
             else {
                 dbSet.Attach(item);
-                context.Entry(item).State = EntityState.Modified;
+                context.SetEntryState(item, EntityState.Modified);
             }
         }
 
@@ -103,7 +103,7 @@ namespace SampleReview.Data.Repo {
         }
         public virtual TDomain Find(params object[] keyValues) {
             var single = dbSet.Find(keyValues);
-            context.Entry(single).Reload();
+            context.Reload(single);
             return single;
         }
 

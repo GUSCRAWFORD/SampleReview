@@ -4,12 +4,12 @@
     beforeEach(inject(function (_$componentController_, _constraints_) {
         constraints = _constraints_;
         $componentController = _$componentController_;
-        var defaultOrderBy = ['-x', '-y'];
+        var defaultOrderBy = ['-x', '+y'];
         bindings = {
             order: {
                 options: {
                     x: { label: 'X', type: 'numeric', defaultAsc: '-', prefix: { asc: 'Lowest', desc: 'Highest' } },
-                    y: { label: 'Y', type: 'amount', defaultAsc: '-', prefix: { asc: 'Oldest', desc: 'Newest' } }
+                    y: { label: 'Y', type: 'amount', defaultAsc: '+', prefix: { asc: 'Oldest', desc: 'Newest' } }
                 },
                 by: defaultOrderBy,
                 page: constraints.defaultPage,
@@ -23,31 +23,48 @@
         ctrl = $componentController('orderUi', null, bindings);
     }));
     describe('`.orderBy`', function () {
-        it('calls `.unorder`', function () {
-            var col = 'x';
-            spyOn(ctrl.order.by, 'unshift');
+        it('sets the desired column to the top of ordering priority, with it\'s configured `defaultAsc` option and calls `.update()`', function () {
+            var col = 'y';
             ctrl.orderBy(col);
-            expect(ctrl.order.by.unshift).toHaveBeenCalledWith('-' + col);
+            expect(ctrl.order.by).toEqual(['+y', '-x']);
             expect(updateSpy).toHaveBeenCalled();
         });
         it('calls api a particular way', function () {
 
         });
     });
-    describe('.reverse', function () {
-        it('calls a particular way', function () { });
+    describe('`.reverse`', function () {
+        it('reverses the order of the desired colum and calls `.update()`', function () {
+            ctrl.reverse('-x');
+            expect(ctrl.order.by).toEqual(['+x', '+y']);
+            expect(updateSpy).toHaveBeenCalled();
+            ctrl.reverse('+y');
+            expect(ctrl.order.by).toEqual(['+x', '-y']);
+            expect(updateSpy).toHaveBeenCalled();
+        });
     });
-    describe('.unorder', function () {
-        it('calls a particular way', function () { });
+    describe('`.unorder`', function () {
+        it(' totally removes a column from order consideration and never calls `.update()`', function () {
+            ctrl.unorder('x');
+            expect(ctrl.order.by).toEqual(['+y']);
+            expect(updateSpy).not.toHaveBeenCalled();
+        });
     });
-    describe('.get', function () {
-        it('calls a particular way', function () { });
+    describe('`.get`', function () {
+        it('returns the numeric index of a given column name', function () {
+            expect(ctrl.get('x')).toBe(0);
+            expect(ctrl.get('y')).toBe(1);
+        });
     });
     describe('.asc', function () {
         it('calls a particular way', function () { });
     });
-    describe('.stripAsc', function () {
-        it('calls a particular way', function () { });
+    describe('.colOptions', function () {
+        it('calls a particular way', function () {
+            expect(ctrl.colOptions('x')).toEqual(bindings.order.options.x);
+            expect(ctrl.colOptions('+x')).toEqual(bindings.order.options.x);
+            expect(ctrl.colOptions('-x')).toEqual(bindings.order.options.x);
+        });
     });
 });
 /*var angular = require('angular');
@@ -82,12 +99,12 @@ function orderUiController(constraints) {
 		ctrl.update();
 	}
 	function reverse(col) {
-		var i = get(ctrl.stripAsc(col));
+		var i = ctrl.get(ctrl.stripAsc(col));
 		ctrl.order.by[i] = (asc(col) ? '-' : '+') + ctrl.stripAsc(col);
 		ctrl.update();
 	}
 	function unorder(col) {
-		var i = get(col);
+		var i = ctrl.get(col);
 		ctrl.order.by.splice(i, 1);
 	}
 	function get(col) {

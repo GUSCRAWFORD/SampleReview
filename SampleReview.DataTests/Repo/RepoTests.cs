@@ -5,6 +5,7 @@ using SampleReview.Data.Domain;
 using SampleReview.DataTests;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace SampleReview.Data.Repo.Tests {
@@ -76,6 +77,23 @@ namespace SampleReview.Data.Repo.Tests {
                             .ToList();
             Assert.IsTrue(result.Count() == 3);
             Assert.IsTrue((int)result.First() > (int)result.Last());
+        }
+        [TestMethod]
+        public void InsertTest()
+        {
+            var expectedAdd = new Item { };
+            repo.Upsert(expectedAdd);
+            mockSet.Verify(s => s.Add(expectedAdd), Times.Once);
+            mockContext.Verify(s => s.SetEntryState(expectedAdd, It.IsAny<EntityState>()), Times.Never);
+        }
+        [TestMethod]
+        public void UpdateTest()
+        {
+            var expectedUpdate = new Item { Id = 1 };
+            mockSet.Setup(s => s.Attach(expectedUpdate)).Verifiable();
+            repo.Upsert(expectedUpdate);
+            mockSet.Verify(s => s.Attach(expectedUpdate), Times.Once);
+            mockContext.Verify(s => s.SetEntryState(expectedUpdate, EntityState.Modified), Times.Once);
         }
     }
 }

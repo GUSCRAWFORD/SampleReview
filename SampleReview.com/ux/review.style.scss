@@ -53,8 +53,6 @@ body {
 
 .organizer {
     background-color: #efefef;
-    padding: 2pt;
-    margin: 1pt;
     margin-bottom: 12pt;
     border-radius: 4pt;
 
@@ -62,22 +60,20 @@ body {
         margin-top: 1pt;
     }
 
-    .col-xs-6 {
-        padding: 1pt;
-    }
-    .auto-scroll {
-        overflow:auto;
+    .col-xs-6, .col-xs-8, .col-xs-4 {
+        padding: 2pt;
     }
 }
 
+.result-list {
+
+}
 .jumbotron {
     h1 {
         margin:0px;
     }
 }
-.result-list {
 
-}
 
 @import 'help/help.scss';
 @import 'components/item-ui-edit-comment/item-ui-edit-comment.scss';

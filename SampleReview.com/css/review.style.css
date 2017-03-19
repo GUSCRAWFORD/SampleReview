@@ -40,16 +40,12 @@ body {
 
 .organizer {
   background-color: #efefef;
-  padding: 2pt;
-  margin: 1pt;
   margin-bottom: 12pt;
   border-radius: 4pt; }
   .organizer > div {
     margin-top: 1pt; }
-  .organizer .col-xs-6 {
-    padding: 1pt; }
-  .organizer .auto-scroll {
-    overflow: auto; }
+  .organizer .col-xs-6, .organizer .col-xs-8, .organizer .col-xs-4 {
+    padding: 2pt; }
 
 .jumbotron h1 {
   margin: 0px; }

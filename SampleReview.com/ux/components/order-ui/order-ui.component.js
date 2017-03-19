@@ -15,32 +15,35 @@ orderUiController.$inject = ['constraints'];
 function orderUiController(constraints) {
 	var ctrl = this;
 	ctrl.$onInit = onInit;
-	ctrl.constraints = constraints;
-	ctrl.stripAsc = stripAsc;
-	ctrl.asc = asc;
+    ctrl.constraints = constraints;
+    ctrl.stripOrder = stripOrder;
+    ctrl.asc = asc;
+    ctrl.desc = desc;
 	ctrl.orderBy = orderBy;
 	ctrl.unorder = unorder;
-	ctrl.reverse = reverse;
+    ctrl.reverse = reverse;
+    ctrl.get = get;
+    ctrl.colOptions = colOptions;
 	function onInit() {
 
 	}
 	function orderBy(col) {
 		ctrl.unorder(col);
-		ctrl.order.by.unshift(ctrl.order.options[ctrl.stripAsc(col)].defaultAsc + col);
+        ctrl.order.by.unshift(ctrl.order.options[ctrl.stripOrder(col)].defaultAsc + col);
 		ctrl.update();
 	}
-	function reverse(col) {
-		var i = get(ctrl.stripAsc(col));
-		ctrl.order.by[i] = (asc(col) ? '-' : '+') + ctrl.stripAsc(col);
+    function reverse(col) {
+		var i = ctrl.get(col);
+        ctrl.order.by[i] = (ctrl.asc(col) ? '-' : '+') + ctrl.stripOrder(col);
 		ctrl.update();
 	}
 	function unorder(col) {
-		var i = get(col);
+		var i = ctrl.get(col);
 		ctrl.order.by.splice(i, 1);
 	}
 	function get(col) {
 		for (var i = 0; i < ctrl.order.by.length; i++) {
-			if (stripAsc(ctrl.order.by[i]) === col) {
+            if (ctrl.stripOrder(ctrl.order.by[i]) === ctrl.stripOrder(col)) {
 				return i;
 			}
 		}
@@ -48,9 +51,16 @@ function orderUiController(constraints) {
 	function asc(col) {
 		if (col[0] === '-') return false;
 		return true;
-	}
-	function stripAsc(col) {
-		if (col[0] === '-' || col[0] === '+') return col.substring(1);
+    }
+    function desc(col) {
+        if (col[0] == '+') return false;
+        return true;
+    }
+	function stripOrder(col) {
+		if (!asc(col) || !desc(col)) return col.substring(1);
 		return col;
-	}
+    }
+    function colOptions(col) {
+        return ctrl.order.options[ctrl.stripOrder(col)];
+    }
 }
