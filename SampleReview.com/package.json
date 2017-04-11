@@ -30,7 +30,7 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-webpack": "^2.0.2",
     "load-grunt-tasks": "^3.5.2",
-    "node-sass": "^4.5.0",
+    "node-sass": "^4.5.2",
     "phantomjs": "^2.1.7",
     "webpack": "^2.2.1"
   },

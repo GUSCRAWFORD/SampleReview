@@ -1,3 +1,3 @@
-cd ../build-scripts
+cd ./build-scripts
 grunt --b ../ build
 @exit 0
